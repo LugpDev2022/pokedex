@@ -5,6 +5,7 @@ import { AuthModal } from "../components/AuthModal";
 
 export const RegisterPage = () => {
   //TODO: Add validators
+
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",

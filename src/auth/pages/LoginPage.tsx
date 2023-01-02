@@ -1,25 +1,43 @@
-import { FormEvent } from "react";
+import { useFormik } from "formik";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GoogleIcon } from "../../assets/icons/GoogleIcon";
 import { AuthModal } from "../components/AuthModal";
 
 export const LoginPage = () => {
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("login");
-  };
+  //TODO: Add validators
+
+  const { handleSubmit, handleChange, values } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: () => {
+      console.log(values);
+    },
+  });
 
   return (
     <AuthModal>
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
+          <Form.Control
+            type="email"
+            placeholder="name@example.com"
+            id="email"
+            value={values.email}
+            onChange={handleChange}
+          />
         </Form.Group>
         <Form.Group className="mb-4">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" />
+          <Form.Control
+            type="password"
+            id="password"
+            value={values.password}
+            onChange={handleChange}
+          />
         </Form.Group>
 
         <Row className="mb-4">
