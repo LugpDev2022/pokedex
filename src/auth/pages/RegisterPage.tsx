@@ -4,7 +4,10 @@ import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getErrorMessage } from "../../helpers/getErrorMessage";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { startCreatingUserWithEmailPassword } from "../../store/auth";
+import {
+  resetError,
+  startCreatingUserWithEmailPassword,
+} from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 
 export const RegisterPage = () => {
@@ -13,6 +16,10 @@ export const RegisterPage = () => {
   const { errorMessage, status } = useAppSelector(
     (state: RootState) => state.auth
   );
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, []);
 
   useEffect(() => {
     if (!errorMessage) return;
