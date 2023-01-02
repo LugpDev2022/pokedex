@@ -37,7 +37,6 @@ export const registerUserWithEmailPassword = async (
 export const signInWithGoogle = async () => {
   try {
     const resp = await signInWithPopup(FirebaseAuth, googleProvider);
-    console.log(resp);
 
     return {
       ok: true,
@@ -58,7 +57,11 @@ export const signInWithEmailPassword = async (
   password: string
 ) => {
   try {
-    const resp = await signInWithEmailAndPassword(FirebaseAuth, email, password);
+    const resp = await signInWithEmailAndPassword(
+      FirebaseAuth,
+      email,
+      password
+    );
     return {
       ok: true,
       uid: resp.user.uid,

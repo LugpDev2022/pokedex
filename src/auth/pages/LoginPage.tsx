@@ -11,9 +11,8 @@ import { AuthModal } from "../components/AuthModal";
 import { useAuthPage } from "../hooks/useAuthPage";
 
 export const LoginPage = () => {
-  //TODO: Autologin if logged
   const dispatch = useAppDispatch();
-  const { shownError, status, disableUI } = useAuthPage();
+  const { shownError, disableUI } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({

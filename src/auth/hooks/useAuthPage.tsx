@@ -27,7 +27,6 @@ export const useAuthPage = () => {
 
   return {
     shownError,
-    status,
     disableUI,
   };
 };

@@ -8,7 +8,7 @@ import { useAuthPage } from "../hooks/useAuthPage";
 
 export const RegisterPage = () => {
   const dispatch = useAppDispatch();
-  const { status, shownError, disableUI } = useAuthPage();
+  const { shownError, disableUI } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -63,7 +63,7 @@ export const RegisterPage = () => {
         <Button
           type="submit"
           className="w-100 px-0 mb-3"
-          disabled={status === "checking"}
+          disabled={disableUI}
         >
           Register
         </Button>
