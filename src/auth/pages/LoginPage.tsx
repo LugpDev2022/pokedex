@@ -17,6 +17,10 @@ export const LoginPage = () => {
     },
   });
 
+  const handleGoogleSignIn = () => {
+    console.log("google sign in");
+  };
+
   return (
     <AuthModal>
       <Form onSubmit={handleSubmit}>
@@ -50,6 +54,7 @@ export const LoginPage = () => {
             <Button
               type="button"
               className="w-100 d-flex align-items-center justify-content-center"
+              onClick={handleGoogleSignIn}
             >
               Google&nbsp;
               <GoogleIcon />
