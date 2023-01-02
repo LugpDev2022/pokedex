@@ -10,7 +10,9 @@ import { AuthModal } from "../components/AuthModal";
 export const RegisterPage = () => {
   const [shownError, setShownError] = useState<string>();
   const dispatch = useAppDispatch();
-  const { errorMessage } = useAppSelector((state: RootState) => state.auth);
+  const { errorMessage, status } = useAppSelector(
+    (state: RootState) => state.auth
+  );
 
   useEffect(() => {
     if (!errorMessage) return;
@@ -67,7 +69,11 @@ export const RegisterPage = () => {
           />
         </Form.Group>
 
-        <Button type="submit" className="w-100 px-0 mb-3">
+        <Button
+          type="submit"
+          className="w-100 px-0 mb-3"
+          disabled={status === "checking"}
+        >
           Register
         </Button>
         {errorMessage && (
