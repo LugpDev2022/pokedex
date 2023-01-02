@@ -1,20 +1,16 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GoogleIcon } from "../../assets/icons/GoogleIcon";
-import { getErrorMessage } from "../../helpers/getErrorMessage";
-import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { resetError, startGoogleSignIn } from "../../store/auth";
+import { useAppDispatch } from "../../store";
+import { startGoogleSignIn } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
+import { useAuthPage } from "../hooks/useAuthPage";
 
 export const LoginPage = () => {
   //TODO: Autologin if logged
   const dispatch = useAppDispatch();
-  const [shownError, setShownError] = useState<string>();
-  const { errorMessage, status } = useAppSelector(
-    (state: RootState) => state.auth
-  );
+  const { shownError, status } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -26,15 +22,6 @@ export const LoginPage = () => {
       console.log(values);
     },
   });
-
-  useEffect(() => {
-    dispatch(resetError());
-  }, []);
-
-  useEffect(() => {
-    if (!errorMessage) return;
-    setShownError(getErrorMessage(errorMessage));
-  }, [errorMessage]);
 
   const handleGoogleSignIn = () => {
     dispatch(startGoogleSignIn());
@@ -65,7 +52,11 @@ export const LoginPage = () => {
 
         <Row className="mb-4">
           <Col>
-            <Button type="submit" className="w-100">
+            <Button
+              type="submit"
+              className="w-100"
+              disabled={status === "checking"}
+            >
               Log In
             </Button>
           </Col>
@@ -74,18 +65,20 @@ export const LoginPage = () => {
               type="button"
               className="w-100 d-flex align-items-center justify-content-center"
               onClick={handleGoogleSignIn}
+              disabled={status === "checking"}
             >
               Google&nbsp;
               <GoogleIcon />
             </Button>
           </Col>
         </Row>
+        {shownError && (
+          <Alert variant="danger" className="py-2">
+            {shownError}
+          </Alert>
+        )}
       </Form>
-      {errorMessage && (
-        <Alert variant="danger" className="py-2">
-          {shownError}
-        </Alert>
-      )}
+
       <Row>
         <Col className="d-flex justify-content-end">
           Are you new?&nbsp;

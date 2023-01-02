@@ -12,6 +12,7 @@ export const authSlice = createSlice({
   reducers: {
     checkingAuth: (state) => {
       state.status = "checking";
+      state.errorMessage = null;
     },
     login: (state, { payload }) => {
       state.status = "authenticated";

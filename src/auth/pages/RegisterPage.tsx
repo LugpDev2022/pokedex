@@ -1,30 +1,14 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { getErrorMessage } from "../../helpers/getErrorMessage";
-import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import {
-  resetError,
-  startCreatingUserWithEmailPassword,
-} from "../../store/auth";
+import { useAppDispatch } from "../../store";
+import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
+import { useAuthPage } from "../hooks/useAuthPage";
 
 export const RegisterPage = () => {
-  const [shownError, setShownError] = useState<string>();
   const dispatch = useAppDispatch();
-  const { errorMessage, status } = useAppSelector(
-    (state: RootState) => state.auth
-  );
-
-  useEffect(() => {
-    dispatch(resetError());
-  }, []);
-
-  useEffect(() => {
-    if (!errorMessage) return;
-    setShownError(getErrorMessage(errorMessage));
-  }, [errorMessage]);
+  const { status, shownError } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -83,7 +67,7 @@ export const RegisterPage = () => {
         >
           Register
         </Button>
-        {errorMessage && (
+        {shownError && (
           <Alert variant="danger" className="py-1">
             {shownError}
           </Alert>
