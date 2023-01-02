@@ -1,0 +1,20 @@
+@import "./custom.scss";
+
+@font-face {
+  font-family: "PokemonFont";
+  src: url("../assets/fonts/pokemonsolid.ttf");
+}
+
+.pokemon-font {
+  font-family: PokemonFont, Arial;
+  letter-spacing: 1px;
+}
+
+// Login
+.my-modal {
+  background-color: #008000 !important;
+  & > div > div {
+    background-color: #f5f5dc;
+    padding: 1em;
+  }
+}
