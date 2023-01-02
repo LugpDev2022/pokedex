@@ -3,7 +3,10 @@ import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GoogleIcon } from "../../assets/icons/GoogleIcon";
 import { useAppDispatch } from "../../store";
-import { startGoogleSignIn } from "../../store/auth";
+import {
+  startGoogleSignIn,
+  startLoginWithEmailPassword,
+} from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 import { useAuthPage } from "../hooks/useAuthPage";
 
@@ -19,7 +22,7 @@ export const LoginPage = () => {
       password: "",
     },
     onSubmit: () => {
-      console.log(values);
+      dispatch(startLoginWithEmailPassword(values.email, values.password));
     },
   });
 
