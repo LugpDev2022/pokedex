@@ -1,12 +1,21 @@
 import { useFormik } from "formik";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../store";
+import { getErrorMessage } from "../../helpers/getErrorMessage";
+import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 
 export const RegisterPage = () => {
+  const [shownError, setShownError] = useState<string>();
   const dispatch = useAppDispatch();
+  const { errorMessage } = useAppSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (!errorMessage) return;
+    setShownError(getErrorMessage(errorMessage));
+  }, [errorMessage]);
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -61,6 +70,11 @@ export const RegisterPage = () => {
         <Button type="submit" className="w-100 px-0 mb-3">
           Register
         </Button>
+        {errorMessage && (
+          <Alert variant="danger" className="py-1">
+            {shownError}
+          </Alert>
+        )}
 
         <Row>
           <Col className="d-flex justify-content-end">

@@ -6,6 +6,7 @@ import { AuthModal } from "../components/AuthModal";
 
 export const LoginPage = () => {
   //TODO: Add validators
+  //TODO: Autologin if logged
 
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {

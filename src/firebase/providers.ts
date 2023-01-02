@@ -13,11 +13,9 @@ export const registerUserWithEmailPassword = async (
       password
     );
 
-    const { uid } = resp.user;
-
     return {
       ok: true,
-      uid,
+      uid: resp.user.uid,
       email,
       displayName,
     };
