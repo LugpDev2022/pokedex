@@ -1,12 +1,12 @@
 import { useFormik } from "formik";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../store";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 
 export const RegisterPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({

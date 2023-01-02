@@ -22,7 +22,6 @@ export const registerUserWithEmailPassword = async (
       displayName,
     };
   } catch (error: any) {
-    console.log(error.code);
     return {
       ok: false,
       errorMessage: error.code,

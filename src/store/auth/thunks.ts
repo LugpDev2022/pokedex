@@ -1,6 +1,6 @@
 import { registerUserWithEmailPassword } from "../../firebase/providers";
 import { AppDispatch } from "../store";
-import { checkingAuth } from "./";
+import { checkingAuth, login, logout } from "./";
 
 interface CreatingUserWithEmailPasswordParams {
   email: string;
@@ -17,6 +17,8 @@ export const startCreatingUserWithEmailPassword = ({
     dispatch(checkingAuth());
 
     const resp = await registerUserWithEmailPassword(email, username, password);
-    //TODO: Login or logout depending of the resp
+
+    if (!resp.ok) return dispatch(logout(resp.errorMessage));
+    dispatch(login(resp));
   };
 };
