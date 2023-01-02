@@ -1,11 +1,14 @@
 import { useFormik } from "formik";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 
 export const RegisterPage = () => {
-  //TODO: Add validators
+  const dispatch = useDispatch();
 
+  //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",
@@ -13,7 +16,14 @@ export const RegisterPage = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      const { email, username, password } = values;
+      dispatch(
+        startCreatingUserWithEmailPassword({
+          email,
+          username,
+          password,
+        })
+      );
     },
   });
 
