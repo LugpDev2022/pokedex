@@ -8,7 +8,7 @@ import { useAuthPage } from "../hooks/useAuthPage";
 
 export const RegisterPage = () => {
   const dispatch = useAppDispatch();
-  const { status, shownError } = useAuthPage();
+  const { status, shownError, disableUI } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -75,7 +75,11 @@ export const RegisterPage = () => {
 
         <Row>
           <Col className="d-flex justify-content-end">
-            <Link to="/auth/login">Do you have an account?</Link>
+            {disableUI ? (
+              <span className="text-muted">Do you have an account?</span>
+            ) : (
+              <Link to="/auth/login">Do you have an account?</Link>
+            )}
           </Col>
         </Row>
       </Form>

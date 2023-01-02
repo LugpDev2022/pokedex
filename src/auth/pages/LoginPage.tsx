@@ -13,7 +13,7 @@ import { useAuthPage } from "../hooks/useAuthPage";
 export const LoginPage = () => {
   //TODO: Autologin if logged
   const dispatch = useAppDispatch();
-  const { shownError, status } = useAuthPage();
+  const { shownError, status, disableUI } = useAuthPage();
 
   //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
@@ -55,11 +55,7 @@ export const LoginPage = () => {
 
         <Row className="mb-4">
           <Col>
-            <Button
-              type="submit"
-              className="w-100"
-              disabled={status === "checking"}
-            >
+            <Button type="submit" className="w-100" disabled={disableUI}>
               Log In
             </Button>
           </Col>
@@ -68,7 +64,7 @@ export const LoginPage = () => {
               type="button"
               className="w-100 d-flex align-items-center justify-content-center"
               onClick={handleGoogleSignIn}
-              disabled={status === "checking"}
+              disabled={disableUI}
             >
               Google&nbsp;
               <GoogleIcon />
@@ -85,7 +81,11 @@ export const LoginPage = () => {
       <Row>
         <Col className="d-flex justify-content-end">
           Are you new?&nbsp;
-          <Link to="/auth/register">Create account</Link>
+          {disableUI ? (
+            <span className="text-muted">Create account</span>
+          ) : (
+            <Link to="/auth/register">Create account</Link>
+          )}
         </Col>
       </Row>
     </AuthModal>

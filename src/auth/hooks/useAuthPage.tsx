@@ -5,10 +5,16 @@ import { resetError } from "../../store/auth";
 
 export const useAuthPage = () => {
   const dispatch = useAppDispatch();
-  const [shownError, setShownError] = useState<string>();
   const { errorMessage, status } = useAppSelector(
     (state: RootState) => state.auth
   );
+  const [shownError, setShownError] = useState<string>();
+  const [disableUI, setDisableUI] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (status === "checking") return setDisableUI(true);
+    setDisableUI(false);
+  }, [status]);
 
   useEffect(() => {
     dispatch(resetError());
@@ -22,5 +28,6 @@ export const useAuthPage = () => {
   return {
     shownError,
     status,
+    disableUI,
   };
 };
