@@ -1,13 +1,22 @@
 import { useFormik } from "formik";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GoogleIcon } from "../../assets/icons/GoogleIcon";
+import { getErrorMessage } from "../../helpers/getErrorMessage";
+import { RootState, useAppDispatch, useAppSelector } from "../../store";
+import { resetError, startGoogleSignIn } from "../../store/auth";
 import { AuthModal } from "../components/AuthModal";
 
 export const LoginPage = () => {
-  //TODO: Add validators
   //TODO: Autologin if logged
+  const dispatch = useAppDispatch();
+  const [shownError, setShownError] = useState<string>();
+  const { errorMessage, status } = useAppSelector(
+    (state: RootState) => state.auth
+  );
 
+  //TODO: Add validators
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",
@@ -18,8 +27,17 @@ export const LoginPage = () => {
     },
   });
 
+  useEffect(() => {
+    dispatch(resetError());
+  }, []);
+
+  useEffect(() => {
+    if (!errorMessage) return;
+    setShownError(getErrorMessage(errorMessage));
+  }, [errorMessage]);
+
   const handleGoogleSignIn = () => {
-    console.log("google sign in");
+    dispatch(startGoogleSignIn());
   };
 
   return (
@@ -63,6 +81,11 @@ export const LoginPage = () => {
           </Col>
         </Row>
       </Form>
+      {errorMessage && (
+        <Alert variant="danger" className="py-2">
+          {shownError}
+        </Alert>
+      )}
       <Row>
         <Col className="d-flex justify-content-end">
           Are you new?&nbsp;
