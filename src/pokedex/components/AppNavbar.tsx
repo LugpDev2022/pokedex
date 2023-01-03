@@ -6,7 +6,7 @@ export const AppNavbar = () => {
   //TODO: Show correctly the user image
 
   return (
-    <Navbar variant="light" bg="info" fixed="top">
+    <Navbar variant="light" bg="primary" fixed="top">
       <Container>
         <Link
           to="/"
