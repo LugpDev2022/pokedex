@@ -21,10 +21,6 @@ export const Router = () => {
     });
   }, []);
 
-  if (status === "checking") {
-    return <h1>Checking</h1>;
-  }
-
   return (
     <Routes>
       {status === "authenticated" ? (

@@ -12,9 +12,14 @@
 
 // Login
 .my-modal {
+  z-index: 0;
   background-color: #008000 !important;
   & > div > div {
     background-color: #f5f5dc;
     padding: 1em;
   }
+}
+
+.centered-spinner {
+  z-index: 1;
 }

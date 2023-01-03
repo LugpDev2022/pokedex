@@ -29,10 +29,7 @@ export const authSlice = createSlice({
       state.uid = null;
       state.errorMessage = payload;
     },
-    resetError: (state) => {
-      state.errorMessage = null;
-    },
   },
 });
 
-export const { checkingAuth, login, logout, resetError } = authSlice.actions;
+export const { checkingAuth, login, logout } = authSlice.actions;

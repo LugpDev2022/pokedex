@@ -7,6 +7,7 @@ import {
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../store/auth";
+import { AppSpinner } from "../../ui/Spinner";
 import { AuthModal } from "../components/AuthModal";
 import { useAuthPage } from "../hooks/useAuthPage";
 
