@@ -1,25 +1,16 @@
-export const getErrorMessage = (error: string): string => {
-  const errors = {
-    usedEmail: "Email alredy in use",
-    popupClosed: "Sign in cancelled by user",
-    emailNotFound: "Account not found",
-    wrongPassword: "Wrong password. Try again",
-  };
+type ErrorCode =
+  | "auth/email-already-in-use"
+  | "auth/popup-closed-by-user"
+  | "auth/user-not-found"
+  | "auth/wrong-password";
 
-  switch (error) {
-    case "auth/email-already-in-use":
-      return errors.usedEmail;
+const errorMessages: Record<ErrorCode, string> = {
+  "auth/email-already-in-use": "Email alredy in use",
+  "auth/popup-closed-by-user": "Sign in cancelled by user",
+  "auth/user-not-found": "Account not found",
+  "auth/wrong-password": "Wrong password. Try again",
+};
 
-    case "auth/popup-closed-by-user":
-      return errors.popupClosed;
-
-    case "auth/user-not-found":
-      return errors.emailNotFound;
-
-    case "auth/wrong-password":
-      return errors.wrongPassword;
-
-    default:
-      return "Unknown error. Try again later";
-  }
+export const getErrorMessage = (error: ErrorCode): string => {
+  return errorMessages[error] || "Unknown error. Try again later";
 };
