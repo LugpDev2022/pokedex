@@ -3,8 +3,7 @@ import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../store";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
-import { AuthModal } from "../components/AuthModal";
-import { FormError } from "../components/FormError";
+import { AuthModal, FormError } from "../components";
 import { useAuthPage } from "../hooks/useAuthPage";
 
 interface Values {
@@ -49,7 +48,6 @@ export const RegisterPage = () => {
     return errors;
   };
 
-  //TODO: Add validators
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       email: "",

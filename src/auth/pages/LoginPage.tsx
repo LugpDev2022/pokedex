@@ -7,19 +7,45 @@ import {
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../store/auth";
-import { AuthModal } from "../components/AuthModal";
+import { AuthModal, FormError } from "../components";
 import { useAuthPage } from "../hooks/useAuthPage";
+
+interface Values {
+  email: string;
+  password: string;
+}
+
+interface Errors {
+  email?: string;
+  password?: string;
+}
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
   const { shownError, disableUI } = useAuthPage();
+  const validate = ({ email, password }: Values) => {
+    const errors: Errors = {};
 
-  //TODO: Add validators
-  const { handleSubmit, handleChange, values } = useFormik({
+    // Email validations
+    if (!email) errors.email = "Required";
+    else if (!email.includes("@") || !email.includes(".") || email.length < 2) {
+      errors.email = "Must be a valid mail";
+    }
+
+    // Password validations
+    if (!password) errors.password = "Required";
+
+    return errors;
+  };
+
+  const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
+    validate,
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: () => {
       dispatch(startLoginWithEmailPassword(values.email, values.password));
     },
@@ -42,6 +68,7 @@ export const LoginPage = () => {
             onChange={handleChange}
             disabled={disableUI}
           />
+          {errors.email && <FormError error={errors.email} />}
         </Form.Group>
         <Form.Group className="mb-4">
           <Form.Label className="text-secondary">Password</Form.Label>
@@ -52,6 +79,7 @@ export const LoginPage = () => {
             onChange={handleChange}
             disabled={disableUI}
           />
+          {errors.password && <FormError error={errors.password} />}
         </Form.Group>
 
         <Row className="mb-4">
@@ -73,7 +101,10 @@ export const LoginPage = () => {
           </Col>
         </Row>
         {shownError && (
-          <Alert variant="danger" className="py-2 fw-bold text-center animate__animated animate__bounceIn">
+          <Alert
+            variant="danger"
+            className="py-2 fw-bold text-center animate__animated animate__bounceIn"
+          >
             {shownError}
           </Alert>
         )}
