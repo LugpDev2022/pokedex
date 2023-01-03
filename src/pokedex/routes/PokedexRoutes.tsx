@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AppNavbar } from "../components/AppNavbar";
+import { AppNavbar } from "../components";
 import { PokedexPage, SearchPage, PokemonPage, ProfilePage } from "../pages";
 
 export const PokedexRoutes = () => (
