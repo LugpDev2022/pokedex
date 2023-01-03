@@ -12,8 +12,8 @@ export const PokedexPage = () => {
       </Row>
       <Pagination size="lg" className="mt-5 justify-content-center">
         <Pagination.Prev />
-        <Pagination.Item>1</Pagination.Item>
-        <Pagination.Item active>2</Pagination.Item>
+        <Pagination.Item active>1</Pagination.Item>
+        <Pagination.Item>2</Pagination.Item>
         <Pagination.Item>3</Pagination.Item>
         <Pagination.Next />
       </Pagination>
