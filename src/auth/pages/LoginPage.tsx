@@ -41,6 +41,7 @@ export const LoginPage = () => {
             id="email"
             value={values.email}
             onChange={handleChange}
+            disabled={disableUI}
           />
         </Form.Group>
         <Form.Group className="mb-4">
@@ -50,6 +51,7 @@ export const LoginPage = () => {
             id="password"
             value={values.password}
             onChange={handleChange}
+            disabled={disableUI}
           />
         </Form.Group>
 

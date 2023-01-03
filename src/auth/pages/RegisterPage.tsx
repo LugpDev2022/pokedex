@@ -39,6 +39,7 @@ export const RegisterPage = () => {
             id="email"
             value={values.email}
             onChange={handleChange}
+            disabled={disableUI}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -48,6 +49,7 @@ export const RegisterPage = () => {
             id="username"
             value={values.username}
             onChange={handleChange}
+            disabled={disableUI}
           />
         </Form.Group>
         <Form.Group className="mb-4">
@@ -57,14 +59,11 @@ export const RegisterPage = () => {
             id="password"
             value={values.password}
             onChange={handleChange}
+            disabled={disableUI}
           />
         </Form.Group>
 
-        <Button
-          type="submit"
-          className="w-100 px-0 mb-3"
-          disabled={disableUI}
-        >
+        <Button type="submit" className="w-100 px-0 mb-3" disabled={disableUI}>
           Register
         </Button>
         {shownError && (
