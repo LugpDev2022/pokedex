@@ -13,9 +13,11 @@ export const AuthModal = ({ children }: Props) => (
     centered
     className="my-modal bg-primary"
   >
-    <Modal.Title className="text-center text-secondary mt-3 pokemon-font fs-1">
+    <Modal.Title className="text-center text-secondary mt-3 pokemon-font fs-1 animate__animated animate__fadeIn animate__faster">
       Pokedex
     </Modal.Title>
-    <Modal.Body className="py-0">{children}</Modal.Body>
+    <Modal.Body className="py-0 animate__animated animate__fadeIn animate__faster">
+      {children}
+    </Modal.Body>
   </Modal>
 );

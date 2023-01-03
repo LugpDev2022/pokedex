@@ -73,7 +73,7 @@ export const LoginPage = () => {
           </Col>
         </Row>
         {shownError && (
-          <Alert variant="danger" className="py-2 fw-bold">
+          <Alert variant="danger" className="py-2 fw-bold text-center animate__animated animate__bounceIn">
             {shownError}
           </Alert>
         )}

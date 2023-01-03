@@ -71,7 +71,7 @@ export const RegisterPage = () => {
           Register
         </Button>
         {shownError && (
-          <Alert variant="danger" className="py-2 fw-bold text-center">
+          <Alert variant="danger" className="py-2 fw-bold text-center animate__animated animate__bounceIn">
             {shownError}
           </Alert>
         )}
