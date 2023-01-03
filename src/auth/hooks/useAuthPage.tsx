@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { getErrorMessage } from "../../helpers/getErrorMessage";
+import { getErrorMessage } from "../../helpers";
 import { logout } from "../../store/auth";
 
 export const useAuthPage = () => {
@@ -11,6 +11,7 @@ export const useAuthPage = () => {
   const [shownError, setShownError] = useState<string>();
   const [disableUI, setDisableUI] = useState<boolean>(false);
 
+  //TODO: Fix logout before login bug when auto login
   useEffect(() => {
     dispatch(logout(null));
   }, []);

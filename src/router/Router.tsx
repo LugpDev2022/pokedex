@@ -1,10 +1,13 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AuthRoutes } from "../auth";
+import { onAuthStateChanged } from "firebase/auth";
+
 import { FirebaseAuth } from "../firebase/config";
+import { AuthRoutes } from "../auth";
 import { PokedexRoutes } from "../pokedex";
+
 import { RootState } from "../store";
 import { login, logout } from "../store/auth";
 

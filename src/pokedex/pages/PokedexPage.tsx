@@ -1,3 +1,3 @@
 export const PokedexPage = () => {
-  return <h1>PokedexPage</h1>;
+  return <h1 className='navbar-margin'>PokedexPage</h1>;
 };
