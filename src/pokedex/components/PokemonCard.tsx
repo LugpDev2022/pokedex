@@ -16,7 +16,7 @@ export const PokemonCard = ({ pokemon, index }: Props) => {
         <Card.Body className="d-flex flex-column align-items-center justify-content-center">
           <Card.Title>Chikorita</Card.Title>
           <Card.Subtitle className="mb-3 text-center">ID: 123</Card.Subtitle>
-          <Card.Text className="mb-1 text-center">Type: normal</Card.Text>
+          <Card.Text className="mb-1 text-center">Types: normal</Card.Text>
           <Card.Text className="mb-1 text-center">Base experience: 105</Card.Text>
           <Card.Text className="mb-1 text-center">Height: 15</Card.Text>
           <Card.Text className="mb-1 text-center">Weight: 15</Card.Text>

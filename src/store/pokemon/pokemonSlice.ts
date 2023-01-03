@@ -15,7 +15,11 @@ export const pokemonSlice = createSlice({
     changePage: (state, { payload }) => {
       state.page = payload;
     },
+    setChargingState: (state) => {
+      state.isDataCharging = true;
+    },
   },
 });
 
-export const { chargePokemons, changePage } = pokemonSlice.actions;
+export const { chargePokemons, changePage, setChargingState } =
+  pokemonSlice.actions;
