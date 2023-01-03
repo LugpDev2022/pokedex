@@ -7,7 +7,6 @@ import {
   startGoogleSignIn,
   startLoginWithEmailPassword,
 } from "../../store/auth";
-import { AppSpinner } from "../../ui/Spinner";
 import { AuthModal } from "../components/AuthModal";
 import { useAuthPage } from "../hooks/useAuthPage";
 
@@ -34,7 +33,7 @@ export const LoginPage = () => {
     <AuthModal>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          <Form.Label className="text-secondary">Email</Form.Label>
           <Form.Control
             type="email"
             placeholder="name@example.com"
@@ -45,7 +44,7 @@ export const LoginPage = () => {
           />
         </Form.Group>
         <Form.Group className="mb-4">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="text-secondary">Password</Form.Label>
           <Form.Control
             type="password"
             id="password"
@@ -74,14 +73,14 @@ export const LoginPage = () => {
           </Col>
         </Row>
         {shownError && (
-          <Alert variant="danger" className="py-2">
+          <Alert variant="danger" className="py-2 fw-bold">
             {shownError}
           </Alert>
         )}
       </Form>
 
       <Row>
-        <Col className="d-flex justify-content-end">
+        <Col className="d-flex justify-content-end text-secondary">
           Are you new?&nbsp;
           {disableUI ? (
             <span className="text-muted">Create account</span>

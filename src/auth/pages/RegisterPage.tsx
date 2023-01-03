@@ -33,7 +33,7 @@ export const RegisterPage = () => {
     <AuthModal>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
+          <Form.Label className="text-secondary">Email</Form.Label>
           <Form.Control
             type="email"
             id="email"
@@ -43,7 +43,7 @@ export const RegisterPage = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
+          <Form.Label className="text-secondary">Username</Form.Label>
           <Form.Control
             type="text"
             id="username"
@@ -53,7 +53,7 @@ export const RegisterPage = () => {
           />
         </Form.Group>
         <Form.Group className="mb-4">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="text-secondary">Password</Form.Label>
           <Form.Control
             type="password"
             id="password"
@@ -63,11 +63,15 @@ export const RegisterPage = () => {
           />
         </Form.Group>
 
-        <Button type="submit" className="w-100 px-0 mb-3" disabled={disableUI}>
+        <Button
+          type="submit"
+          className="w-100 px-0 mb-3 fw-bold"
+          disabled={disableUI}
+        >
           Register
         </Button>
         {shownError && (
-          <Alert variant="danger" className="py-1">
+          <Alert variant="danger" className="py-2 fw-bold text-center">
             {shownError}
           </Alert>
         )}

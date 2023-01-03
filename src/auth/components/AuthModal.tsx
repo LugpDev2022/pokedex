@@ -6,8 +6,14 @@ interface Props {
 }
 
 export const AuthModal = ({ children }: Props) => (
-  <Modal show animation={false} backdrop={false} centered className="my-modal">
-    <Modal.Title className="text-center mt-3 pokemon-font fs-1">
+  <Modal
+    show
+    animation={false}
+    backdrop={false}
+    centered
+    className="my-modal bg-primary"
+  >
+    <Modal.Title className="text-center text-secondary mt-3 pokemon-font fs-1">
       Pokedex
     </Modal.Title>
     <Modal.Body className="py-0">{children}</Modal.Body>
