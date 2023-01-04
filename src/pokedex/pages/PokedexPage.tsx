@@ -7,12 +7,12 @@ import { getPokemonsByPage } from "../helpers";
 
 export const PokedexPage = () => {
   const dispatch = useAppDispatch();
-  const { pokemons } = useAppSelector((state) => state.pokemon);
+  const { pokemons, page } = useAppSelector((state) => state.pokemon);
 
   useEffect(() => {
     const gettingPokemons = async () => {
       dispatch(setChargingState());
-      const pokemons = await getPokemonsByPage(1);
+      const pokemons = await getPokemonsByPage(page);
       dispatch(chargePokemons(pokemons));
     };
 

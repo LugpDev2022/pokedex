@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { getErrorMessage } from "../../helpers";
 import { resetError } from "../../store/auth";
+import { getErrorMessage } from "../../helpers";
 
 export const useAuthPage = () => {
   const dispatch = useAppDispatch();
@@ -16,14 +16,14 @@ export const useAuthPage = () => {
   }, []);
 
   useEffect(() => {
-    if (status === "checking") return setDisableUI(true);
-    setDisableUI(false);
-  }, [status]);
-
-  useEffect(() => {
     if (!errorMessage) return setShownError("");
     setShownError(getErrorMessage(errorMessage));
   }, [errorMessage]);
+
+  useEffect(() => {
+    if (status === "checking") return setDisableUI(true);
+    setDisableUI(false);
+  }, [status]);
 
   return {
     shownError,

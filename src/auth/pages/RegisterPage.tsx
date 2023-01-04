@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../store";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { AuthModal, FormError } from "../components";
-import { useAuthPage } from "../hooks/useAuthPage";
+import { useAuthPage } from "../hooks";
 
 interface Values {
   email: string;
