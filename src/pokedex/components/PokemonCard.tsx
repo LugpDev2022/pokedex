@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, ListGroup, Row } from "react-bootstrap";
 
 interface Props {
-  pokemon: object;
-  index: number;
+  name: string;
+  id: number;
+  types: any;
+  sprite: string;
+  height: number;
+  weight: number;
 }
 
-type PokemonType = {
-  type: any;
-};
-
-export const PokemonCard = ({ pokemon, index }: Props) => {
-  const [pokemonTypes, setPokemonTypes] = useState<any[]>();
-  const { id, types, name, sprites, base_experience, height, weight }: any =
-    pokemon;
+export const PokemonCard = ({
+  name,
+  id,
+  types,
+  sprite,
+  height,
+  weight,
+}: Props) => {
+  const [pokemonTypes, setPokemonTypes] = useState<string[]>();
 
   useEffect(() => {
-    const tipesList = types.map((type: PokemonType) => {
+    //TODO: Set the correct type
+    const tipesList = types.map((type: any) => {
       return type.type.name;
     });
 
@@ -24,21 +30,23 @@ export const PokemonCard = ({ pokemon, index }: Props) => {
   }, []);
 
   return (
-    <Col xs={12} sm={10} md={6} xl={5}>
-      <Card className="flex-row mt-5">
-        <Card.Img style={{ width: "50%" }} src={sprites.front_default} />
-        <Card.Body className="d-flex flex-column align-items-center justify-content-center">
-          <Card.Title className="text-uppercase">{name}</Card.Title>
-          <Card.Subtitle className="mb-3 text-center">ID: {id}</Card.Subtitle>
-          <Card.Text className="mb-1 text-center">
-            Types: {pokemonTypes && pokemonTypes.map((type) => type + ", ")}
-          </Card.Text>
-          <Card.Text className="mb-1 text-center">
-            Base experience: {base_experience}
-          </Card.Text>
-          <Card.Text className="mb-1 text-center">Height: {height}</Card.Text>
-          <Card.Text className="mb-1 text-center">Weight: {weight}</Card.Text>
-        </Card.Body>
+    <Col xs={11} sm={9} md={6} lg={3}>
+      <Card className="mt-5">
+        <Card.Header>
+          <Row>
+            <span className="text-uppercase mb-0 fw-bold fs-4">{name}</span>
+          </Row>
+          <span className="fs-5">ID: {id}</span>
+        </Card.Header>
+        <Card.Img src={sprite} />
+        <ListGroup variant="flush">
+          <ListGroup.Item className="fs-5">HEIGHT: {height}</ListGroup.Item>
+          <ListGroup.Item className="fs-5">WEIGHT: {weight}</ListGroup.Item>
+          <ListGroup.Item className="fs-5">
+            Types:{" "}
+            {pokemonTypes && pokemonTypes.map((type: string) => type + ", ")}
+          </ListGroup.Item>
+        </ListGroup>
       </Card>
     </Col>
   );

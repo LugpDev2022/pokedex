@@ -1,6 +1,7 @@
-export const getPokemonsByPage = async (page: number) => {
+export const getPokemonsByPage = async (page: number, ofset: number = 9) => {
   const pokemons = [];
-  for (let i = page * 8 - 7; i <= page * 8; i++) {
+
+  for (let i = page * ofset - (ofset - 1); i <= page * ofset; i++) {
     const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(
       (resp) => resp.json()
     );

@@ -12,7 +12,7 @@ export const PokedexPage = () => {
   useEffect(() => {
     const gettingPokemons = async () => {
       dispatch(setChargingState());
-      const pokemons = await getPokemonsByPage(page);
+      const pokemons = await getPokemonsByPage(page, 8);
       dispatch(chargePokemons(pokemons));
     };
 
@@ -22,8 +22,12 @@ export const PokedexPage = () => {
   return (
     <Container className="navbar-margin">
       <Row className="justify-content-around">
-        {pokemons.map((pokemon: any, index: number) => (
-          <PokemonCard pokemon={pokemon} index={index} key={pokemon.id} />
+        {pokemons.map((pokemon: any) => (
+          <PokemonCard
+            {...pokemon}
+            sprite={pokemon.sprites.front_default}
+            key={pokemon.id}
+          />
         ))}
       </Row>
       <Pagination size="lg" className="mt-5 justify-content-center">
