@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
-    isDataCharging: true,
+    isDataCharging: false,
     pokemons: [],
     page: 1,
   },
@@ -18,8 +18,13 @@ export const pokemonSlice = createSlice({
     setChargingState: (state) => {
       state.isDataCharging = true;
     },
+    clearPokemons: (state) => {
+      state.isDataCharging = false;
+      state.pokemons = [];
+      state.page = 1;
+    },
   },
 });
 
-export const { chargePokemons, changePage, setChargingState } =
+export const { chargePokemons, changePage, setChargingState, clearPokemons } =
   pokemonSlice.actions;

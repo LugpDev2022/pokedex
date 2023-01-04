@@ -9,6 +9,8 @@ export const PokedexPage = () => {
   const dispatch = useAppDispatch();
   const { page } = useAppSelector((state) => state.pokemon);
 
+  //TODO: Fix change page re render bug
+  //TODO: Use a thunk instead
   useEffect(() => {
     const gettingPokemons = async () => {
       dispatch(setChargingState());

@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -74,4 +75,8 @@ export const signInWithEmailPassword = async (
       errorMessage: error.code,
     };
   }
+};
+
+export const logOutFirebase = async () => {
+  return await FirebaseAuth.signOut();
 };
