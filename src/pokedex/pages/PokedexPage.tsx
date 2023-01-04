@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { Container, Pagination, Row } from "react-bootstrap";
+import { Container, Pagination } from "react-bootstrap";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { chargePokemons, setChargingState } from "../../store/pokemon";
-import { PokemonCard } from "../components";
+import { ShowPokemonCards } from "../components";
 import { getPokemonsByPage } from "../helpers";
 
 export const PokedexPage = () => {
   const dispatch = useAppDispatch();
-  const { pokemons, page } = useAppSelector((state) => state.pokemon);
+  const { page } = useAppSelector((state) => state.pokemon);
 
   useEffect(() => {
     const gettingPokemons = async () => {
@@ -21,15 +21,8 @@ export const PokedexPage = () => {
 
   return (
     <Container className="navbar-margin">
-      <Row className="justify-content-around">
-        {pokemons.map((pokemon: any) => (
-          <PokemonCard
-            {...pokemon}
-            sprite={pokemon.sprites.front_default}
-            key={pokemon.id}
-          />
-        ))}
-      </Row>
+      <ShowPokemonCards />
+
       <Pagination size="lg" className="mt-5 justify-content-center">
         <Pagination.Prev />
         <Pagination.Item active>1</Pagination.Item>
