@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import { getPokemonType } from "../helpers";
 
 interface Props {
   name: string;
@@ -18,15 +19,10 @@ export const PokemonCard = ({
   height,
   weight,
 }: Props) => {
-  const [pokemonTypes, setPokemonTypes] = useState<string[]>();
+  const [pokemonTypes, setPokemonTypes] = useState<string>("");
 
   useEffect(() => {
-    //TODO: Set the correct type
-    const tipesList = types.map((type: any) => {
-      return type.type.name;
-    });
-
-    setPokemonTypes(tipesList);
+    setPokemonTypes(getPokemonType(types));
   }, []);
 
   return (
@@ -40,12 +36,9 @@ export const PokemonCard = ({
         </Card.Header>
         <Card.Img src={sprite} />
         <ListGroup variant="flush">
+          <ListGroup.Item className="fs-5">{pokemonTypes}</ListGroup.Item>
           <ListGroup.Item className="fs-5">HEIGHT: {height}</ListGroup.Item>
           <ListGroup.Item className="fs-5">WEIGHT: {weight}</ListGroup.Item>
-          <ListGroup.Item className="fs-5">
-            Types:{" "}
-            {pokemonTypes && pokemonTypes.map((type: string) => type + ", ")}
-          </ListGroup.Item>
         </ListGroup>
       </Card>
     </Col>
