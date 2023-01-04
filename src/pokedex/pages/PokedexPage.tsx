@@ -7,7 +7,7 @@ import { getPokemonsByPage } from "../helpers";
 
 export const PokedexPage = () => {
   const dispatch = useAppDispatch();
-  const { page } = useAppSelector((state) => state.pokemon);
+  const { page, pokemons } = useAppSelector((state) => state.pokemon);
 
   useEffect(() => {
     const gettingPokemons = async () => {
@@ -16,6 +16,7 @@ export const PokedexPage = () => {
       dispatch(chargePokemons(pokemons));
     };
 
+    if (pokemons.length > 1) return;
     gettingPokemons();
   }, []);
 

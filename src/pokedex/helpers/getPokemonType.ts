@@ -1,9 +1,10 @@
-export const getPokemonType = (typesArray: string[]): string => {
+//TODO: Add correct types
+
+export const getPokemonType = (typesArray: any[]): string => {
   if (typesArray.length === 1) return `TYPE: ${typesArray[0].type.name}`;
 
   let types: string = "TYPES: ";
 
-  //TODO: Add correct type
   typesArray.map((type: any) => {
     types = types + type.type.name + ", ";
   });
