@@ -1,4 +1,5 @@
 export const getPokemonsByPage = async (page: number, ofset: number = 9) => {
+  //TODO: Manage errors
   const pokemons = [];
 
   for (let i = page * ofset - (ofset - 1); i <= page * ofset; i++) {

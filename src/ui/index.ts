@@ -1,2 +1,2 @@
 export * from "./PokemonCardPlaceholder";
-export * from "./Spinner";
+export * from "./AppSpinner";

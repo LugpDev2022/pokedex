@@ -1,6 +1,6 @@
 import { Router } from "./router";
 import { useAppSelector } from "./store";
-import { AppSpinner } from "./ui/Spinner";
+import { AppSpinner } from "./ui";
 
 function App() {
   const { status } = useAppSelector((state) => state.auth);

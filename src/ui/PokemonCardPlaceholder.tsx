@@ -1,4 +1,5 @@
 import { Card, Col, ListGroup, Placeholder, Row } from "react-bootstrap";
+import { AppSpinner } from "./";
 import white from "../assets/images/white.jpg";
 
 export const PokemonCardPlaceholder = () => (
@@ -13,6 +14,9 @@ export const PokemonCardPlaceholder = () => (
         <Placeholder xs={2} />
       </Card.Header>
       <Card.Img src={white} />
+      <Card.ImgOverlay>
+        <AppSpinner centered variant="muted" />
+      </Card.ImgOverlay>
       <ListGroup variant="flush">
         <ListGroup.Item className="fs-5">
           <Placeholder xs={6} />
