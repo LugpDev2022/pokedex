@@ -1,6 +1,8 @@
 //TODO: Add correct types
 
 export const getPokemonType = (typesArray: any[]): string => {
+  if (!typesArray) throw new Error('"typesArray" not defined')
+
   if (typesArray.length === 1) return `TYPE: ${typesArray[0].type.name}`;
 
   let types: string = "TYPES: ";
