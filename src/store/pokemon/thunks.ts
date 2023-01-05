@@ -10,8 +10,11 @@ import {
 export const startChargingPokemons = (page: number) => {
   return async (dispatch: AppDispatch) => {
     dispatch(setChargingState());
-    const pokemonsArray = await getPokemonsByPage(page);
-    dispatch(chargePokemons(pokemonsArray));
+    const resp = await getPokemonsByPage(page);
+
+    //TODO: Handle error
+    if (!resp.ok) return;
+    dispatch(chargePokemons(resp.pokemons));
   };
 };
 

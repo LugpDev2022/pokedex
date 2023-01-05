@@ -1,14 +1,24 @@
-export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
-  //TODO: Manage errors
-  const pokemons = [];
+import { getPokemonById } from "./getPokemonById";
 
-  for (let i = page * ofset - (ofset - 1); i <= page * ofset; i++) {
-    const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(
-      (resp) => resp.json()
+export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
+  try {
+    const numberOfPokemons = Array.from(
+      { length: ofset },
+      (_, i) => page * ofset - (ofset - 1) + i
     );
 
-    pokemons.push(resp);
-  }
+    const pokemons = await Promise.all(
+      numberOfPokemons.map((number) => getPokemonById(number))
+    );
 
-  return pokemons;
+    return {
+      ok: true,
+      pokemons,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errorMessage: error,
+    };
+  }
 };

@@ -24,9 +24,9 @@ export const ShowPokemonCards = () => {
     <Row className="justify-content-around">
       {pokemons.map((pokemon: any) => (
         <PokemonCard
-          {...pokemon}
-          sprite={pokemon.sprites.front_default}
-          key={pokemon.id}
+          {...pokemon.pokemonData}
+          sprite={pokemon.pokemonData.sprites.front_default}
+          key={pokemon.pokemonData.id}
         />
       ))}
     </Row>
