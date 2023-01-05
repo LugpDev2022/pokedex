@@ -1,8 +1,13 @@
-export const GoogleIcon = () => (
+interface Props {
+  width?: number;
+  height?: number;
+}
+
+export const GoogleIcon = ({ width = 16, height = 16 }: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width={width}
+    height={height}
     fill="currentColor"
     className="bi bi-google"
     viewBox="0 0 16 16"

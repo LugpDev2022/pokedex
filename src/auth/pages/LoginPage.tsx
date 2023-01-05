@@ -20,6 +20,7 @@ interface Errors {
   password?: string;
 }
 
+//TODO: googleSignIn should clear the errors
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
   const { shownError, disableUI } = useAuthPage();
