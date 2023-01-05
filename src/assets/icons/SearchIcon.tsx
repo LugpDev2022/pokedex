@@ -1,6 +1,6 @@
 interface Props {
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 }
 
 export const SearchIcon = ({ width, height }: Props) => (
