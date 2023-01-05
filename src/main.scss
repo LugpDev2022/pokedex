@@ -28,3 +28,8 @@ body {
 .navbar-margin {
   margin-top: 75px;
 }
+
+.card-as-link:hover div {
+  background-color: #158cba !important;
+  transition: 200ms;
+}
