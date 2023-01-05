@@ -1,4 +1,4 @@
-export const getPokemonsByPage = async (page: number, ofset: number = 9) => {
+export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
   //TODO: Manage errors
   const pokemons = [];
 
