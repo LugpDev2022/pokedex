@@ -8,6 +8,7 @@ export const authSlice = createSlice({
     username: null,
     uid: null,
     errorMessage: null,
+    visitedUrl: "",
   },
   reducers: {
     checkingAuth: (state) => {
@@ -27,12 +28,17 @@ export const authSlice = createSlice({
       state.email = null;
       state.username = null;
       state.uid = null;
+      state.visitedUrl = "";
       state.errorMessage = payload;
     },
     resetError: (state) => {
       state.errorMessage = null;
     },
+    setVisitedUrl: (state, { payload }) => {
+      state.visitedUrl = payload;
+    },
   },
 });
 
-export const { checkingAuth, login, logout, resetError } = authSlice.actions;
+export const { checkingAuth, login, logout, resetError, setVisitedUrl } =
+  authSlice.actions;
