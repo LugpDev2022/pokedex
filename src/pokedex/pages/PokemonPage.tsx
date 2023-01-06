@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Modal, Row, Image } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Modal,
+  Row,
+  Image,
+  Placeholder,
+} from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { OutlinedStarIcon } from "../../assets/icons";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { startChargingUniquePokemon } from "../../store/pokemon";
 import { getPokemonType } from "../helpers";
+import { OutlinedStarIcon } from "../../assets/icons";
+import white from "../../assets/images/white.jpg";
 
 export const PokemonPage = () => {
-  //TODO: Add a share button
+  //TODO:Disable icons when charging data
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+
   //TODO: Set the correct type
-  const { uniquePokemon }: { uniquePokemon: any } = useAppSelector(
-    (state) => state.pokemon
+  const {
+    uniquePokemon,
+    isDataCharging,
+  }: { uniquePokemon: any; isDataCharging: boolean } = useAppSelector(
+    (state: RootState) => state.pokemon
   );
   const [pokemonTypes, setPokemonTypes] = useState<string>("");
 
@@ -40,25 +52,41 @@ export const PokemonPage = () => {
             <Image
               className="col-9 col-sm-6"
               fluid
-              src={uniquePokemon.sprites && uniquePokemon.sprites.front_default}
+              src={
+                isDataCharging
+                  ? white
+                  : uniquePokemon.sprites && uniquePokemon.sprites.front_default
+              }
             />
 
             <Col className="d-flex flex-column justify-content-around">
               <Row>
                 <h2 className="mt-0 text-center text-sm-start text-uppercase">
-                  {uniquePokemon.name}
+                  {isDataCharging ? <Placeholder xs={6} /> : uniquePokemon.name}
                 </h2>
                 <h3 className="h4 text-center text-sm-start mt-0 mb-4">
-                  ID: {uniquePokemon.id}
+                  {isDataCharging ? (
+                    <Placeholder xs={3} />
+                  ) : (
+                    `ID: ${uniquePokemon.id}`
+                  )}
                 </h3>
                 <span className="fs-4 text-center text-sm-start">
-                  {pokemonTypes}
+                  {isDataCharging ? <Placeholder xs={7} /> : pokemonTypes}
                 </span>
                 <span className="fs-4 text-center text-sm-start">
-                  HEIGHT: {uniquePokemon.height}
+                  {isDataCharging ? (
+                    <Placeholder xs={4} />
+                  ) : (
+                    `HEIGHT: ${uniquePokemon.height}`
+                  )}
                 </span>
                 <span className="fs-4 text-center text-sm-start">
-                  WEIGHT: {uniquePokemon.weight}
+                  {isDataCharging ? (
+                    <Placeholder xs={4} />
+                  ) : (
+                    `WEIGHT: ${uniquePokemon.weight}`
+                  )}
                 </span>
               </Row>
               <Row className="mt-5 mt-sm-4 mt-lg-0">
