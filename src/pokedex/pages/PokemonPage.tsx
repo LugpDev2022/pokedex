@@ -44,7 +44,7 @@ export const PokemonPage = () => {
         animation={false}
         backdrop={false}
         size="lg"
-        className="my-modal"
+        className="my-modal animate__animated animate__fadeInLeft"
         centered
       >
         <Container>

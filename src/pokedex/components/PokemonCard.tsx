@@ -30,7 +30,7 @@ export const PokemonCard = ({
     <Col xs={11} sm={9} md={6} lg={3}>
       <Link
         to={`/pokemon/${id}`}
-        className="text-decoration-none text-reset card-as-link"
+        className="text-decoration-none text-reset card-as-link animate__animated animate__fadeIn"
       >
         <Card className="mt-5">
           <Card.Header>
@@ -39,7 +39,7 @@ export const PokemonCard = ({
             </Row>
             <span className="fs-5">ID: {id}</span>
           </Card.Header>
-          <div className='img-custom-container'>
+          <div className="img-custom-container">
             <Card.Img src={sprite} />
           </div>
           <ListGroup variant="flush">
