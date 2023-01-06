@@ -39,7 +39,9 @@ export const PokemonCard = ({
             </Row>
             <span className="fs-5">ID: {id}</span>
           </Card.Header>
-          <Card.Img src={sprite} />
+          <div className='img-custom-container'>
+            <Card.Img src={sprite} />
+          </div>
           <ListGroup variant="flush">
             <ListGroup.Item className="fs-5">{pokemonTypes}</ListGroup.Item>
             <ListGroup.Item className="fs-5">HEIGHT: {height}</ListGroup.Item>

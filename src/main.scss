@@ -29,7 +29,18 @@ body {
   margin-top: 75px;
 }
 
-.card-as-link:hover div {
-  background-color: #158cba !important;
+.card-as-link {
   transition: 200ms;
+  div {
+    border: none !important;
+  }
+
+  &:hover {
+    div {
+      background-color: #51a5c6 !important;
+    }
+    .img-custom-container {
+      background-color: #94bfd0 !important;
+    }
+  }
 }
