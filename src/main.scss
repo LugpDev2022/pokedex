@@ -1,3 +1,5 @@
+@import '@sweetalert2/themes/bootstrap-4/bootstrap-4.scss';
+
 @font-face {
   font-family: "PokemonFont";
   src: url("./assets/fonts/pokemonsolid.ttf");
@@ -43,4 +45,8 @@ body {
       background-color: #94bfd0 !important;
     }
   }
+}
+
+.share-icon:hover {
+  fill: #158cba;
 }

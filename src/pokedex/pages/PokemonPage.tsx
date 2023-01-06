@@ -13,6 +13,7 @@ import { startChargingUniquePokemon } from "../../store/pokemon";
 import { getPokemonType } from "../helpers";
 import { OutlinedStarIcon } from "../../assets/icons";
 import white from "../../assets/images/white.jpg";
+import { ShareButton } from "../components";
 
 export const PokemonPage = () => {
   //TODO:Disable icons when charging data
@@ -50,7 +51,7 @@ export const PokemonPage = () => {
         <Container>
           <Row className="justify-content-center">
             <Image
-              className="col-9 col-sm-6"
+              className="col-10 col-sm-6"
               fluid
               src={
                 isDataCharging
@@ -90,18 +91,9 @@ export const PokemonPage = () => {
                 </span>
               </Row>
               <Row className="mt-5 mt-sm-4 mt-lg-0">
-                <Col className="d-flex gap-5 justify-content-center justify-content-sm-start">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="25"
-                    height="25"
-                    fill="currentColor"
-                    className="bi bi-share"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-                  </svg>
-                  <OutlinedStarIcon width={25} height={25} />
+                <Col className="d-flex justify-content-center justify-content-sm-start">
+                  <ShareButton />
+                  <OutlinedStarIcon width={30} height={30} />
                 </Col>
               </Row>
             </Col>
