@@ -1,5 +1,3 @@
-import { getPokemonById } from "./getPokemonById";
-
 export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
   try {
     const numberOfPokemons = Array.from(
@@ -7,8 +5,13 @@ export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
       (_, i) => page * ofset - (ofset - 1) + i
     );
 
+    const responses = await Promise.all(
+      numberOfPokemons.map((id) =>
+        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      )
+    );
     const pokemons = await Promise.all(
-      numberOfPokemons.map((number) => getPokemonById(number))
+      responses.map((response) => response.json())
     );
 
     return {

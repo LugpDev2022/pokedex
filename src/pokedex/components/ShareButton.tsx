@@ -2,6 +2,7 @@ import { ShareIcon } from "../../assets/icons";
 import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 
+//TODO: Create my own modal for the alert
 export const ShareButton = () => {
   const { pathname } = useLocation();
 
