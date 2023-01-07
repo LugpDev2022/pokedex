@@ -1,4 +1,4 @@
-import { Image, Container, Navbar } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { PersonIcon, SearchIcon } from "../../assets/icons";
 

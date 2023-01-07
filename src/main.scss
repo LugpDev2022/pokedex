@@ -3,6 +3,12 @@
   src: url("./assets/fonts/pokemonsolid.ttf");
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   background-color: #b5ccdd;
 }
@@ -29,6 +35,10 @@ body {
   margin-top: 75px;
 }
 
+.navbar-padding {
+  padding-top: 75px;
+}
+
 .card-as-link {
   transition: 200ms;
   div {
@@ -47,4 +57,8 @@ body {
 
 .share-icon:hover {
   fill: #158cba;
+}
+
+.icon-disabled {
+  fill: gray;
 }
