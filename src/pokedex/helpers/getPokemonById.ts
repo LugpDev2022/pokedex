@@ -13,11 +13,13 @@ export const getPokemonById = async (pokemonId: number) => {
         height,
         sprites,
       },
+      errorMessage: "",
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       ok: false,
-      errorMessage: error,
+      pokemonData: {},
+      errorMessage: 'Unexpected error',
     };
   }
 };

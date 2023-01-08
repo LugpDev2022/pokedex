@@ -11,6 +11,7 @@ describe("tests on getPokemonById", () => {
       height: expect.any(Number),
       sprites: expect.any(Object),
     };
+
     const { ok, pokemonData, errorMessage } = await getPokemonById(152);
 
     expect(ok).toBe(true);
@@ -22,7 +23,8 @@ describe("tests on getPokemonById", () => {
     const { ok, pokemonData, errorMessage } = await getPokemonById(10000);
 
     expect(ok).toBe(false);
-    expect(pokemonData).toBeFalsy();
-    expect(errorMessage).toBeTruthy();
+    expect(pokemonData).toEqual({});
+    expect(errorMessage).toEqual(expect.any(String));
+    expect(errorMessage.length).toBeGreaterThan(1);
   });
 });
