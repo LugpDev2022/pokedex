@@ -17,11 +17,13 @@ export const getPokemonsByPage = async (page: number, ofset: number = 8) => {
     return {
       ok: true,
       pokemons,
+      errorMessage: "",
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       ok: false,
-      errorMessage: error,
+      pokemons: [],
+      errorMessage: "Unexpected error",
     };
   }
 };
