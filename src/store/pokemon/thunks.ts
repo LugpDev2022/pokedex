@@ -1,5 +1,4 @@
-import { getPokemonsByPage } from "../../pokedex/helpers";
-import { getPokemonById } from "../../pokedex/helpers/getPokemonById";
+import { getPokemonsByPage, getPokemonById } from "../../pokedex/helpers";
 import { AppDispatch } from "../store";
 import {
   chargePokemons,

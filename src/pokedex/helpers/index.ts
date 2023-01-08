@@ -1,3 +1,3 @@
 export * from "./getPokemonsByPage";
 export * from "./getPokemonType";
-export * from "./shouldReverseCard";
+export * from "./getPokemonById";
