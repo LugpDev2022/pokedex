@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { PersonIcon, SearchIcon } from "../../assets/icons";
 import { SearchForm } from "./SearchForm";
 
-interface Props {
-  handleSearchClick: MouseEventHandler;
-  handleCancelForm: MouseEventHandler;
+interface NavMdProps {
+  handleClick: MouseEventHandler;
+  handleCancel: MouseEventHandler;
   showForm: boolean;
 }
 
@@ -25,15 +25,15 @@ const NavbarContent = () => (
 );
 
 const NavbarMdContent = ({
-  handleSearchClick,
-  handleCancelForm,
+  handleClick,
+  handleCancel,
   showForm,
-}: Props) => {
+}: NavMdProps) => {
   if (showForm) {
     return (
       <SearchForm
         className="animate__animated animate__fadeInRight"
-        handleCancel={handleCancelForm}
+        handleCancel={handleCancel}
         closeButton
       />
     );
@@ -43,7 +43,7 @@ const NavbarMdContent = ({
     <>
       <div
         className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
-        onClick={handleSearchClick}
+        onClick={handleClick}
       >
         <SearchIcon width={30} height={30} />
       </div>
@@ -76,8 +76,8 @@ export const AppNavbar = () => {
         <Navbar.Collapse id="main-navbar" className="justify-content-end gap-4">
           <NavbarContent />
           <NavbarMdContent
-            handleSearchClick={handleSearchClick}
-            handleCancelForm={handleCancelForm}
+            handleClick={handleSearchClick}
+            handleCancel={handleCancelForm}
             showForm={showForm}
           />
         </Navbar.Collapse>
