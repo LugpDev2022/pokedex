@@ -26,6 +26,12 @@ body {
   background-color: #51a5c6 !important;
   color: black !important;
   border: none !important;
+  transition: 200ms;
+
+  &:hover {
+    margin-top: 0px !important;
+    background-color: #4bb3dc !important;
+  }
 }
 
 .form-custom {
