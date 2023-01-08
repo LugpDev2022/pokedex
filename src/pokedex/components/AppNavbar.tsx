@@ -13,10 +13,10 @@ interface NavMdProps {
 const NavbarContent = () => (
   <>
     <SearchForm className="d-md-none my-4" />
-    <div className="text-center mb-2">
+    <div className="d-flex justify-content-center">
       <Link
         to="/profile"
-        className="d-md-none h2 text-black text-decoration-none"
+        className="d-md-none d-flex align-items-center h2 text-black text-decoration-none"
       >
         ACCOUNT <PersonIcon width={30} height={30} />
       </Link>
