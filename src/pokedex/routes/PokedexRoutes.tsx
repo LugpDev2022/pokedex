@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppSelector } from "../../store";
 import { AppNavbar } from "../components";
-import { PokedexPage, SearchPage, PokemonPage, ProfilePage } from "../pages";
+import { PokedexPage, PokemonPage, ProfilePage } from "../pages";
 
 export const PokedexRoutes = () => {
   const { visitedUrl } = useAppSelector((state) => state.auth);
@@ -11,7 +11,6 @@ export const PokedexRoutes = () => {
       <AppNavbar />
       <Routes>
         <Route path="/" element={<PokedexPage />} />
-        <Route path="/search" element={<SearchPage />} />
         <Route path="/pokemon/:id" element={<PokemonPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
