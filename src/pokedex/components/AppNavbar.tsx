@@ -6,29 +6,56 @@ import { SearchForm } from "./SearchForm";
 
 interface Props {
   handleSearchClick: MouseEventHandler;
+  handleCancelForm: MouseEventHandler;
+  showForm: boolean;
 }
 
-const NavbarMdContent = ({ handleSearchClick }: Props) => (
+const NavbarContent = () => (
   <>
-    <div
-      className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
-      onClick={handleSearchClick}
-    >
-      <SearchIcon width={30} height={30} />
+    <SearchForm className="d-md-none my-4" />
+    <div className="text-center mb-2">
+      <Link
+        to="/profile"
+        className="d-md-none h2 text-black text-decoration-none"
+      >
+        ACCOUNT <PersonIcon width={30} height={30} />
+      </Link>
     </div>
-    <SearchForm className="d-md-none" />
-    <Link
-      to="/profile"
-      className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
-    >
-      <PersonIcon width={40} height={40} />
-    </Link>
-
-    <Link to="/profile" className="d-md-none text-black text-decoration-none">
-      Your account
-    </Link>
   </>
 );
+
+const NavbarMdContent = ({
+  handleSearchClick,
+  handleCancelForm,
+  showForm,
+}: Props) => {
+  if (showForm) {
+    return (
+      <SearchForm
+        className="animate__animated animate__fadeInRight"
+        handleCancel={handleCancelForm}
+        closeButton
+      />
+    );
+  }
+
+  return (
+    <>
+      <div
+        className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
+        onClick={handleSearchClick}
+      >
+        <SearchIcon width={30} height={30} />
+      </div>
+      <Link
+        to="/profile"
+        className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
+      >
+        <PersonIcon width={40} height={40} />
+      </Link>
+    </>
+  );
+};
 
 export const AppNavbar = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
@@ -47,11 +74,12 @@ export const AppNavbar = () => {
         </Link>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar" className="justify-content-end gap-4">
-          {showForm ? (
-            <SearchForm handleCancel={handleCancelForm} closeButton />
-          ) : (
-            <NavbarMdContent handleSearchClick={handleSearchClick} />
-          )}
+          <NavbarContent />
+          <NavbarMdContent
+            handleSearchClick={handleSearchClick}
+            handleCancelForm={handleCancelForm}
+            showForm={showForm}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>

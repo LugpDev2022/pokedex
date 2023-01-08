@@ -14,11 +14,7 @@ export const SearchForm = ({
   className,
 }: Props) => {
   return (
-    <Form
-      className={`animate__animated animate__fadeInRight my-3 my-md-0 ${
-        className ? className : ""
-      }`}
-    >
+    <Form className={className ? className : ""}>
       <InputGroup>
         {closeButton && (
           <Button className="btn-custom" onClick={handleCancel}>
