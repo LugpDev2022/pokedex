@@ -3,16 +3,28 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { SearchIcon, CloseIcon } from "../../assets/icons";
 
 interface Props {
-  handleCancel: MouseEventHandler;
+  handleCancel?: MouseEventHandler;
+  closeButton?: boolean;
+  className?: string;
 }
 
-export const SearchForm = ({ handleCancel }: Props) => {
+export const SearchForm = ({
+  handleCancel,
+  closeButton = false,
+  className,
+}: Props) => {
   return (
-    <Form>
+    <Form
+      className={`animate__animated animate__fadeInRight my-3 my-md-0 ${
+        className ? className : ""
+      }`}
+    >
       <InputGroup>
-        <Button className="btn-custom" onClick={handleCancel}>
-          <CloseIcon width={25} height={25} />
-        </Button>
+        {closeButton && (
+          <Button className="btn-custom" onClick={handleCancel}>
+            <CloseIcon width={25} height={25} />
+          </Button>
+        )}
         <Form.Control
           size="sm"
           type="text"
