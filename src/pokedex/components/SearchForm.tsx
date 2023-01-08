@@ -3,6 +3,7 @@ import { MouseEventHandler } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SearchIcon, CloseIcon } from "../../assets/icons";
+import { includesLetters } from "../../helpers";
 
 interface Props {
   handleCancel?: MouseEventHandler;
@@ -10,7 +11,14 @@ interface Props {
   className?: string;
 }
 
-//TODO: Add validators
+interface Values {
+  searchedPokemon: string;
+}
+
+interface Errors {
+  searchedPokemon?: string;
+}
+
 export const SearchForm = ({
   handleCancel,
   closeButton = false,
@@ -18,8 +26,21 @@ export const SearchForm = ({
 }: Props) => {
   const navigate = useNavigate();
 
+  const validate = ({ searchedPokemon }: Values) => {
+    const errors: Errors = {};
+
+    if (searchedPokemon.length < 1) errors.searchedPokemon = "Write an ID";
+    else if (includesLetters(searchedPokemon))
+      errors.searchedPokemon = "Introduce a pokemon ID";
+    else if (searchedPokemon.trim().includes(" "))
+      errors.searchedPokemon = "Delete the white spaces";
+
+    return errors;
+  };
+
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: { searchedPokemon: "" },
+    validate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: ({ searchedPokemon }) => {
