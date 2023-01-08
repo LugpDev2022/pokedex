@@ -18,6 +18,25 @@ body {
   letter-spacing: 1px;
 }
 
+.text-black {
+  color: black !important;
+}
+
+.btn-custom {
+  background-color: #51a5c6 !important;
+  color: black !important;
+  border: none !important;
+}
+
+.form-custom {
+  background-color: #94bfd0 !important;
+  border: none !important;
+
+  &::placeholder {
+    color: #454545 !important;
+  }
+}
+
 // Login
 .my-modal {
   z-index: 0;
@@ -61,4 +80,8 @@ body {
 
 .icon-disabled {
   fill: gray;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer !important;
 }

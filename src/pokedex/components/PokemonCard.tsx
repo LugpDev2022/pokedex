@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getPokemonType } from "../helpers";
 
 interface Props {
+  margin: boolean;
   name: string;
   id: number;
   types: any;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const PokemonCard = ({
+  margin = true,
   name,
   id,
   types,
@@ -32,7 +34,7 @@ export const PokemonCard = ({
         to={`/pokemon/${id}`}
         className="text-decoration-none text-reset card-as-link animate__animated animate__fadeIn"
       >
-        <Card className="mt-5">
+        <Card className={margin ? "mt-4" : ""}>
           <Card.Header>
             <Row>
               <span className="text-uppercase mb-0 fw-bold fs-4">{name}</span>
