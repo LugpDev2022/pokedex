@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row, Image, Placeholder } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Image,
+  Placeholder,
+  Alert,
+} from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { startChargingUniquePokemon } from "../../store/pokemon";
@@ -17,9 +24,10 @@ export const PokemonPage = () => {
   const {
     uniquePokemon,
     isDataCharging,
-  }: { uniquePokemon: any; isDataCharging: boolean } = useAppSelector(
-    (state: RootState) => state.pokemon
-  );
+    errorMessage,
+  }: { uniquePokemon: any; isDataCharging: boolean; errorMessage: string } =
+    useAppSelector((state: RootState) => state.pokemon);
+
   const [pokemonTypes, setPokemonTypes] = useState<string>("");
 
   useEffect(() => {
@@ -81,22 +89,28 @@ export const PokemonPage = () => {
     <Container className="h-100 navbar-padding animate__animated animate__fadeInLeft">
       <Row className="h-100 align-items-center justify-content-center">
         <Col xs={11} md={10} lg={8} xl={6}>
-          <div className="bg-white rounded-4 py-3">
-            <Row className="justify-content-center">
-              <Col xs={10} sm={6}>
-                <Image
-                  className="w-100"
-                  src={
-                    isDataCharging
-                      ? white
-                      : uniquePokemon.sprites &&
-                      uniquePokemon.sprites.front_default
-                  }
-                />
-              </Col>
-              {isDataCharging ? <CardPlaceholder /> : <PokemonCard />}
-            </Row>
-          </div>
+          {errorMessage ? (
+            <Alert variant="danger" className="h5 fw-bold text-center">
+              We don't know that pokemon
+            </Alert>
+          ) : (
+            <div className="bg-white rounded-4 py-3">
+              <Row className="justify-content-center">
+                <Col xs={10} sm={6}>
+                  <Image
+                    className="w-100"
+                    src={
+                      isDataCharging
+                        ? white
+                        : uniquePokemon.sprites &&
+                          uniquePokemon.sprites.front_default
+                    }
+                  />
+                </Col>
+                {isDataCharging ? <CardPlaceholder /> : <PokemonCard />}
+              </Row>
+            </div>
+          )}
         </Col>
       </Row>
     </Container>
