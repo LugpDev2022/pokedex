@@ -11,10 +11,6 @@ interface Props {
   className?: string;
 }
 
-interface Values {
-  searchedPokemon: string;
-}
-
 interface Errors {
   searchedPokemon?: string;
 }
@@ -26,7 +22,7 @@ export const SearchForm = ({
 }: Props) => {
   const navigate = useNavigate();
 
-  const validate = ({ searchedPokemon }: Values) => {
+  const validate = (searchedPokemon: string) => {
     const errors: Errors = {};
 
     if (searchedPokemon.length < 1) errors.searchedPokemon = "Write an ID";
@@ -40,10 +36,11 @@ export const SearchForm = ({
 
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: { searchedPokemon: "" },
-    validate,
-    validateOnBlur: false,
-    validateOnChange: false,
     onSubmit: ({ searchedPokemon }) => {
+      const errors = validate(searchedPokemon);
+      //TODO: Add a better alert
+      if (errors.searchedPokemon) return alert(errors.searchedPokemon);
+
       navigate(`/pokemon/${searchedPokemon}`);
     },
   });
