@@ -12,8 +12,7 @@ export const startChargingPokemons = (page: number) => {
     dispatch(setChargingState());
     const resp = await getPokemonsByPage(page);
 
-    //TODO: Handle error
-    if (!resp.ok) return;
+    if (!resp.ok) return dispatch(cancelCharge(resp.errorMessage));
     dispatch(chargePokemons(resp.pokemons));
   };
 };
@@ -23,7 +22,6 @@ export const startChargingUniquePokemon = (pokemonId: number) => {
     dispatch(setChargingState());
     const resp = await getPokemonById(pokemonId);
 
-    //TODO: Handle error
     if (!resp.ok) return dispatch(cancelCharge(resp.errorMessage));
     dispatch(chargeUniquePokemon(resp.pokemonData));
   };
