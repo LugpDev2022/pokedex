@@ -4,9 +4,7 @@ import { changePage, setChargingState } from "../../store/pokemon";
 
 export const AppPagination = () => {
   const dispatch = useAppDispatch();
-  const { page, isDataCharging, errorMessage } = useAppSelector(
-    (state) => state.pokemon
-  );
+  const { page, isDataCharging } = useAppSelector((state) => state.pokemon);
 
   const handleClick = (page: number) => {
     dispatch(setChargingState());
@@ -23,7 +21,7 @@ export const AppPagination = () => {
         {page}
       </Pagination.Item>
       <Pagination.Next
-        disabled={isDataCharging || errorMessage === "Unexpected error"}
+        disabled={isDataCharging || page === 113}
         onClick={() => handleClick(page + 1)}
       />
     </Pagination>
