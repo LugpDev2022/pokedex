@@ -13,7 +13,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <h1 className="navbar-margin">ProfilePage</h1>
+      <h1 className="navbar-padding">ProfilePage</h1>
 
       <Button variant="danger" onClick={handleLogout}>
         Log out

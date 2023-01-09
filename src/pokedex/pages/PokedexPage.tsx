@@ -14,7 +14,7 @@ export const PokedexPage = () => {
   }, [page]);
 
   return (
-    <Container className="navbar-margin animate__animated animate__fadeIn">
+    <Container className="navbar-padding animate__animated animate__fadeIn">
       <ShowPokemonCards />
 
       <AppPagination />
