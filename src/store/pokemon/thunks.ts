@@ -1,4 +1,10 @@
-import { doc, setDoc } from "firebase/firestore/lite";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { getPokemonsByPage, getPokemonById } from "../../pokedex/helpers";
 import { AppDispatch } from "../store";
@@ -7,6 +13,7 @@ import {
   chargePokemons,
   chargeUniquePokemon,
   setChargingState,
+  setPokemonFavourite,
   setSavingState,
   stopSavingState,
 } from "./pokemonSlice";
@@ -50,5 +57,24 @@ export const startAddingFavouritePokemon = () => {
     );
 
     dispatch(stopSavingState());
+  };
+};
+
+export const startCheckingPokemon = () => {
+  return async (dispatch: AppDispatch, getState: any) => {
+    const { uid } = getState().auth;
+    const { uniquePokemon } = getState().pokemon;
+
+    if (!uniquePokemon.id) return;
+
+    const docRef = doc(
+      FirebaseDB,
+      `${uid}/pokedexInfo/pokemons/${uniquePokemon.id}`
+    );
+    const docs = await getDoc(docRef);
+
+    if (!docs.exists()) return dispatch(setPokemonFavourite(false));
+
+    dispatch(setPokemonFavourite(true));
   };
 };
