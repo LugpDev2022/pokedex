@@ -4,6 +4,7 @@ export const pokemonSlice = createSlice({
   name: "pokemon",
   initialState: {
     isDataCharging: false,
+    isPokemonSaving: false,
     pokemons: [],
     uniquePokemon: {},
     errorMessage: "",
@@ -12,6 +13,12 @@ export const pokemonSlice = createSlice({
   reducers: {
     setChargingState: (state) => {
       state.isDataCharging = true;
+    },
+    setSavingState: (state) => {
+      state.isPokemonSaving = true;
+    },
+    stopSavingState: (state) => {
+      state.isPokemonSaving = false;
     },
     chargePokemons: (state, { payload }) => {
       state.isDataCharging = false;
@@ -43,6 +50,8 @@ export const pokemonSlice = createSlice({
 
 export const {
   chargePokemons,
+  setSavingState,
+  stopSavingState,
   changePage,
   setChargingState,
   clearPokemons,

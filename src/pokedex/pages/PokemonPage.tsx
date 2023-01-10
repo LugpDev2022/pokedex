@@ -11,15 +11,13 @@ import { useLocation } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { startChargingUniquePokemon } from "../../store/pokemon";
 import { getPokemonType } from "../helpers";
-import { OutlinedStarIcon } from "../../assets/icons";
 import white from "../../assets/images/white.jpg";
-import { ShareButton } from "../components";
+import { AddFavouritePokemonButton, ShareButton } from "../components";
 
 export const PokemonPage = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
 
-  //TODO: Set the correct type
   const {
     uniquePokemon,
     isDataCharging,
@@ -60,7 +58,7 @@ export const PokemonPage = () => {
       <Row className="mt-3">
         <Col className="d-flex justify-content-center justify-content-sm-start">
           <ShareButton />
-          <OutlinedStarIcon width={30} height={30} />
+          <AddFavouritePokemonButton />
         </Col>
       </Row>
     </Col>
@@ -78,7 +76,7 @@ export const PokemonPage = () => {
       <Row className="mt-3">
         <Col className="d-flex justify-content-center justify-content-sm-start">
           <ShareButton />
-          <OutlinedStarIcon width={30} height={30} />
+          <AddFavouritePokemonButton />
         </Col>
       </Row>
     </Col>

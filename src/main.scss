@@ -89,6 +89,15 @@ body {
   fill: #158cba;
 }
 
+.star-icon-filled {
+  fill: yellow;
+}
+
+.star-icon:hover {
+  transition: 200ms;
+  fill: yellow;
+}
+
 .icon-disabled {
   fill: gray !important;
 }

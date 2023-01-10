@@ -1,3 +1,5 @@
+import { doc, setDoc } from "firebase/firestore/lite";
+import { FirebaseDB } from "../../firebase/config";
 import { getPokemonsByPage, getPokemonById } from "../../pokedex/helpers";
 import { AppDispatch } from "../store";
 import {
@@ -5,6 +7,8 @@ import {
   chargePokemons,
   chargeUniquePokemon,
   setChargingState,
+  setSavingState,
+  stopSavingState,
 } from "./pokemonSlice";
 
 export const startChargingPokemons = (page: number) => {
@@ -24,5 +28,27 @@ export const startChargingUniquePokemon = (pokemonId: number) => {
 
     if (!resp.ok) return dispatch(cancelCharge(resp.errorMessage));
     dispatch(chargeUniquePokemon(resp.pokemonData));
+  };
+};
+
+export const startAddingFavouritePokemon = () => {
+  return async (dispatch: AppDispatch, getState: any) => {
+    dispatch(setSavingState());
+
+    const { uid } = getState().auth;
+    const { uniquePokemon } = getState().pokemon;
+    const { id, name } = uniquePokemon;
+
+    const docRef = doc(FirebaseDB, `${uid}/pokedexInfo/pokemons/${id}`);
+    await setDoc(
+      docRef,
+      {
+        id,
+        name,
+      },
+      { merge: true }
+    );
+
+    dispatch(stopSavingState());
   };
 };
