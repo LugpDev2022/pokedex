@@ -16,7 +16,6 @@ import white from "../../assets/images/white.jpg";
 import { ShareButton } from "../components";
 
 export const PokemonPage = () => {
-  //TODO:Disable icons when charging data
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
 
