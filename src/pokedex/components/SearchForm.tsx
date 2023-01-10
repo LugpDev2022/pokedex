@@ -4,6 +4,7 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SearchIcon, CloseIcon } from "../../assets/icons";
 import { includesLetters } from "../../helpers";
+import { useAppSelector } from "../../store";
 
 interface Props {
   handleCancel?: MouseEventHandler;
@@ -21,6 +22,7 @@ export const SearchForm = ({
   className,
 }: Props) => {
   const navigate = useNavigate();
+  const { isDataCharging } = useAppSelector((state) => state.pokemon);
 
   const validate = (searchedPokemon: string) => {
     const errors: Errors = {};
@@ -61,8 +63,15 @@ export const SearchForm = ({
           onChange={handleChange}
           id="searchedPokemon"
           value={values.searchedPokemon}
+          disabled={isDataCharging}
+          readOnly={isDataCharging}
         />
-        <Button type="submit" variant="info" className="btn-custom">
+        <Button
+          disabled={isDataCharging}
+          type="submit"
+          variant="info"
+          className="btn-custom"
+        >
           <SearchIcon width={25} height={25} />
         </Button>
       </InputGroup>

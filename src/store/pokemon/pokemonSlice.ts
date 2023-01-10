@@ -7,7 +7,7 @@ export const pokemonSlice = createSlice({
     pokemons: [],
     uniquePokemon: {},
     errorMessage: "",
-    page: 113,
+    page: 1,
   },
   reducers: {
     setChargingState: (state) => {

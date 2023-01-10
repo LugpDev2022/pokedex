@@ -32,6 +32,11 @@ body {
     margin-top: 0px !important;
     background-color: #4bb3dc !important;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    color: white !important;
+  }
 }
 
 .form-custom {
@@ -40,6 +45,10 @@ body {
 
   &::placeholder {
     color: #454545 !important;
+  }
+
+  &:disabled {
+    opacity: 0.7;
   }
 }
 
