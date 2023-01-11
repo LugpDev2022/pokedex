@@ -32,9 +32,8 @@ export const AddFavouritePokemonButton = () => {
   return (
     <span onClick={handleAdd}>
       <OutlinedStarIcon
-        width={30}
-        height={30}
-        disabled={isDataCharging || isPokemonSaving}
+        size={30}
+        className={isDataCharging || isPokemonSaving ? "icon-disabled" : "star-icon"}
       />
     </span>
   );
