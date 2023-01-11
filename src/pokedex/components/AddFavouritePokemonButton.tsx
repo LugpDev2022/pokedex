@@ -4,14 +4,18 @@ import { startAddingFavouritePokemon } from "../../store/pokemon";
 
 export const AddFavouritePokemonButton = () => {
   const dispatch = useAppDispatch();
-  const { isDataCharging, isPokemonSaving, isUniquePokemonFavourite } =
+  const {
+    isDataCharging,
+    isPokemonSaving,
+    uniquePokemon,
+  }: { isDataCharging: boolean; isPokemonSaving: boolean; uniquePokemon: any } =
     useAppSelector((state) => state.pokemon);
 
   const handleClick = () => {
     dispatch(startAddingFavouritePokemon());
   };
 
-  if (isUniquePokemonFavourite)
+  if (uniquePokemon.isFavourite)
     return (
       <span>
         <svg

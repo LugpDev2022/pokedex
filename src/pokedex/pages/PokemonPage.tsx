@@ -9,10 +9,7 @@ import {
 } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import {
-  startChargingUniquePokemon,
-  startCheckingPokemon,
-} from "../../store/pokemon";
+import { startChargingUniquePokemon } from "../../store/pokemon";
 import { getPokemonType } from "../helpers";
 import white from "../../assets/images/white.jpg";
 import { AddFavouritePokemonButton, ShareButton } from "../components";
@@ -25,7 +22,6 @@ export const PokemonPage = () => {
     uniquePokemon,
     isDataCharging,
     errorMessage,
-    isPokemonSaving,
   }: {
     uniquePokemon: any;
     isDataCharging: boolean;
@@ -43,11 +39,6 @@ export const PokemonPage = () => {
   useEffect(() => {
     uniquePokemon.types && setPokemonTypes(getPokemonType(uniquePokemon.types));
   }, [uniquePokemon]);
-
-  useEffect(() => {
-    if (!uniquePokemon) return;
-    dispatch(startCheckingPokemon());
-  }, [isPokemonSaving, isDataCharging]);
 
   const CardPlaceholder = () => (
     <Col xs={12} sm={6} className="d-flex flex-column justify-content-around">
@@ -113,7 +104,7 @@ export const PokemonPage = () => {
                       isDataCharging
                         ? white
                         : uniquePokemon.sprites &&
-                          uniquePokemon.sprites.front_default
+                        uniquePokemon.sprites.front_default
                     }
                   />
                 </Col>

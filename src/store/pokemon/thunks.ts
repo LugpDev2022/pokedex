@@ -11,7 +11,6 @@ import {
   chargePokemons,
   chargeUniquePokemon,
   setChargingState,
-  setPokemonFavourite,
   setSavingState,
   stopSavingState,
 } from "./pokemonSlice";
@@ -27,12 +26,16 @@ export const startChargingPokemons = (page: number) => {
 };
 
 export const startChargingUniquePokemon = (pokemonId: number) => {
-  return async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch, getState: any) => {
     dispatch(setChargingState());
-    const resp = await getPokemonById(pokemonId);
 
+    const resp = await getPokemonById(pokemonId);
     if (!resp.ok) return dispatch(cancelCharge(resp.errorMessage));
-    dispatch(chargeUniquePokemon(resp.pokemonData));
+
+    const { uid } = getState().auth;
+    const isFavourite = await isPokemonFavourite(uid, pokemonId);
+
+    dispatch(chargeUniquePokemon({ ...resp.pokemonData, isFavourite }));
   };
 };
 
@@ -55,22 +58,5 @@ export const startAddingFavouritePokemon = () => {
     );
 
     dispatch(stopSavingState());
-  };
-};
-
-export const startCheckingPokemon = () => {
-  return async (dispatch: AppDispatch, getState: any) => {
-    const { uid } = getState().auth;
-    const { uniquePokemon } = getState().pokemon;
-
-    if (!uniquePokemon.id) return;
-
-    const isFavourite = await isPokemonFavourite({
-      uid,
-      pokemonId: uniquePokemon.id,
-    });
-
-    if (!isFavourite) return dispatch(setPokemonFavourite(false));
-    dispatch(setPokemonFavourite(true));
   };
 };
