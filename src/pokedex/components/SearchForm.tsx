@@ -72,7 +72,7 @@ export const SearchForm = ({
           variant="info"
           className="btn-custom"
         >
-          <SearchIcon width={20} height={20} />
+          <SearchIcon size={20} />
         </Button>
       </InputGroup>
     </Form>

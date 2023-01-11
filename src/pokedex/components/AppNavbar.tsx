@@ -45,7 +45,7 @@ const NavbarMdContent = ({
         className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
         onClick={handleClick}
       >
-        <SearchIcon width={30} height={30} />
+        <SearchIcon />
       </div>
       <Link
         to="/profile"
