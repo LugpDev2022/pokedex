@@ -30,6 +30,9 @@ body {
   background-color: #51a5c6 !important;
   border: none !important;
   color: black !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 200ms;
 
   &:hover {

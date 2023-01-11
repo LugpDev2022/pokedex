@@ -52,7 +52,7 @@ export const SearchForm = ({
       <InputGroup>
         {closeButton && (
           <Button className="btn-custom" onClick={handleCancel}>
-            <CloseIcon width={25} height={25} />
+            <CloseIcon size={25} />
           </Button>
         )}
         <Form.Control
@@ -72,7 +72,7 @@ export const SearchForm = ({
           variant="info"
           className="btn-custom"
         >
-          <SearchIcon width={25} height={25} />
+          <SearchIcon width={20} height={20} />
         </Button>
       </InputGroup>
     </Form>

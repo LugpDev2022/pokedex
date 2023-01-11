@@ -32,7 +32,7 @@ const NavbarMdContent = ({
   if (showForm) {
     return (
       <SearchForm
-        className="animate__animated animate__fadeInRight"
+        className="animate__animated animate__fadeInRight d-none d-md-block"
         handleCancel={handleCancel}
         closeButton
       />
