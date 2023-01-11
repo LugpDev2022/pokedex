@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore/lite";
+import { deleteDoc, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import {
   getPokemonsByPage,
@@ -57,6 +57,20 @@ export const startAddingFavouritePokemon = () => {
       { merge: true }
     );
 
-    dispatch(stopSavingState());
+    dispatch(stopSavingState(true));
+  };
+};
+
+export const startDeletingFavouritePokemon = () => {
+  return async (dispatch: AppDispatch, getState: any) => {
+    dispatch(setSavingState());
+
+    const { uid } = getState().auth;
+    const { uniquePokemon } = getState().pokemon;
+    await deleteDoc(
+      doc(FirebaseDB, `${uid}/pokedexInfo/pokemons/${uniquePokemon.id}`)
+    );
+
+    dispatch(stopSavingState(false));
   };
 };

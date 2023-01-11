@@ -17,8 +17,8 @@ export const pokemonSlice = createSlice({
     setSavingState: (state) => {
       state.isPokemonSaving = true;
     },
-    stopSavingState: (state) => {
-      state.uniquePokemon = { ...state.uniquePokemon, isFavourite: true };
+    stopSavingState: (state, { payload }) => {
+      state.uniquePokemon = { ...state.uniquePokemon, isFavourite: payload };
       state.isPokemonSaving = false;
     },
     chargePokemons: (state, { payload }) => {

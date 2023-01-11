@@ -87,15 +87,23 @@ body {
 
 .share-icon:hover {
   fill: #158cba;
+  cursor: pointer;
 }
 
 .star-icon-filled {
   fill: yellow;
+  transition: 200ms;
+  cursor: pointer;
+
+  &:hover {
+    fill: #cdcd7d;
+  }
 }
 
 .star-icon:hover {
   transition: 200ms;
   fill: yellow;
+  cursor: pointer;
 }
 
 .icon-disabled {
