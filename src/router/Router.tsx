@@ -9,7 +9,7 @@ import { AuthRoutes } from "../auth";
 import { PokedexRoutes } from "../pokedex";
 
 import { RootState } from "../store";
-import { login, logout, setVisitedUrl } from "../store/auth";
+import { login, logout } from "../store/auth";
 
 export const Router = () => {
   const { status } = useSelector((state: RootState) => state.auth);
@@ -17,15 +17,13 @@ export const Router = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    dispatch(setVisitedUrl(pathname));
-  }, []);
-
-  useEffect(() => {
     onAuthStateChanged(FirebaseAuth, async (user) => {
       if (!user) return dispatch(logout(null));
 
       const { uid, email, displayName } = user;
-      dispatch(login({ uid, email, displayName }));
+      dispatch(
+        login({ uid, email, username: displayName, visitedUrl: pathname })
+      );
     });
   }, []);
 

@@ -34,7 +34,8 @@ export const startGoogleSignIn = () => {
     const resp = await signInWithGoogle();
 
     if (!resp.ok) return dispatch(logout(resp.errorMessage));
-    dispatch(login(resp));
+    console.log(resp);
+    dispatch(login({ ...resp, visitedUrl: "/" }));
   };
 };
 
@@ -47,7 +48,7 @@ export const startLoginWithEmailPassword = (
     const resp = await signInWithEmailPassword(email, password);
 
     if (!resp.ok) return dispatch(logout(resp.errorMessage));
-    dispatch(login(resp));
+    dispatch(login({ ...resp, visitedUrl: "/" }));
   };
 };
 

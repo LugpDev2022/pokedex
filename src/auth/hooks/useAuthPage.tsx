@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { resetError } from "../../store/auth";
+import { logout } from "../../store/auth";
 import { getErrorMessage } from "../../helpers";
 
 export const useAuthPage = () => {
@@ -12,7 +12,7 @@ export const useAuthPage = () => {
   const [disableUI, setDisableUI] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(resetError());
+    dispatch(logout(null));
   }, []);
 
   useEffect(() => {
