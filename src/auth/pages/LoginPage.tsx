@@ -97,7 +97,7 @@ export const LoginPage = () => {
               disabled={disableUI}
             >
               Google&nbsp;
-              <GoogleIcon />
+              <GoogleIcon size={16} />
             </Button>
           </Col>
         </Row>
