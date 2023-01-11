@@ -18,7 +18,7 @@ const NavbarContent = () => (
         to="/profile"
         className="d-md-none d-flex align-items-center h2 text-black text-decoration-none"
       >
-        ACCOUNT <PersonIcon width={30} height={30} />
+        ACCOUNT <PersonIcon />
       </Link>
     </div>
   </>
@@ -51,7 +51,7 @@ const NavbarMdContent = ({
         to="/profile"
         className="nav-link cursor-pointer animate__animated animate__fadeIn d-none d-md-block"
       >
-        <PersonIcon width={40} height={40} />
+        <PersonIcon size={40} />
       </Link>
     </>
   );
