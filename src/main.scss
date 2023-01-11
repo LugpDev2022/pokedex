@@ -1,8 +1,15 @@
+// Fonts
 @font-face {
   font-family: "PokemonFont";
   src: url("./assets/fonts/pokemonsolid.ttf");
 }
 
+.pokemon-font {
+  font-family: PokemonFont, Arial !important;
+  letter-spacing: 1px;
+}
+
+// General Styles
 html,
 body,
 #root {
@@ -13,10 +20,7 @@ body {
   background-color: #b5ccdd;
 }
 
-.pokemon-font {
-  font-family: PokemonFont, Arial !important;
-  letter-spacing: 1px;
-}
+// General custom classes
 
 .text-black {
   color: black !important;
@@ -24,18 +28,18 @@ body {
 
 .btn-custom {
   background-color: #51a5c6 !important;
-  color: black !important;
   border: none !important;
+  color: black !important;
   transition: 200ms;
 
   &:hover {
-    margin-top: 0px !important;
     background-color: #4bb3dc !important;
+    margin-top: 0px !important;
   }
 
   &:disabled {
-    opacity: 0.5;
     color: white !important;
+    opacity: 0.5;
   }
 }
 
@@ -52,7 +56,6 @@ body {
   }
 }
 
-// Login
 .my-modal {
   z-index: 0;
   & > div > div {
@@ -71,6 +74,7 @@ body {
 
 .card-as-link {
   transition: 200ms;
+
   div {
     border: none !important;
   }
