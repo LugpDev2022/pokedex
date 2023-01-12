@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getPokemonType } from "../helpers";
 
 interface Props {
-  margin: boolean;
+  margin?: boolean;
   name: string;
   id: number;
   types: any;
@@ -44,10 +44,10 @@ export const PokemonCard = ({
           <div className="img-custom-container">
             <Card.Img src={sprite} />
           </div>
-          <ListGroup variant="flush">
-            <ListGroup.Item className="fs-5">{pokemonTypes}</ListGroup.Item>
-            <ListGroup.Item className="fs-5">HEIGHT: {height}</ListGroup.Item>
-            <ListGroup.Item className="fs-5">WEIGHT: {weight}</ListGroup.Item>
+          <ListGroup variant="flush" className="fs-5">
+            <ListGroup.Item>{pokemonTypes}</ListGroup.Item>
+            <ListGroup.Item>HEIGHT: {height}</ListGroup.Item>
+            <ListGroup.Item>WEIGHT: {weight}</ListGroup.Item>
           </ListGroup>
         </Card>
       </Link>
