@@ -7,6 +7,7 @@ export const pokemonSlice = createSlice({
     isPokemonSaving: false,
     pokemons: [],
     uniquePokemon: {},
+    favouritePokemons: [],
     errorMessage: "",
     page: 1,
   },
@@ -39,12 +40,19 @@ export const pokemonSlice = createSlice({
       state.pokemons = [];
       state.uniquePokemon = {};
       state.page = 1;
+      state.favouritePokemons = [];
     },
     cancelCharge: (state, { payload }) => {
       state.isDataCharging = false;
       state.pokemons = [];
       state.uniquePokemon = {};
+      state.favouritePokemons = [];
       state.errorMessage = payload;
+    },
+    chargeFavouritePokemons: (state, { payload }) => {
+      state.isDataCharging = false;
+      state.favouritePokemons = payload;
+      state.errorMessage = "";
     },
   },
 });
@@ -58,4 +66,5 @@ export const {
   clearPokemons,
   chargeUniquePokemon,
   cancelCharge,
+  chargeFavouritePokemons,
 } = pokemonSlice.actions;

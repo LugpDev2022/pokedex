@@ -4,6 +4,7 @@ import {
   signInWithEmailPassword,
   signInWithGoogle,
 } from "../../firebase/providers";
+import { clearPokemons } from "../pokemon";
 import { AppDispatch } from "../store";
 import { checkingAuth, login, logout } from "./";
 
@@ -55,6 +56,7 @@ export const startLoginWithEmailPassword = (
 export const startLogOut = () => {
   return async (dispatch: AppDispatch) => {
     await logOutFirebase();
+    dispatch(clearPokemons());
     dispatch(logout(null));
   };
 };

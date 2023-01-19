@@ -1,4 +1,10 @@
-import { deleteDoc, doc, setDoc } from "firebase/firestore/lite";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import {
   getPokemonsByPage,
@@ -8,6 +14,7 @@ import {
 import { AppDispatch } from "../store";
 import {
   cancelCharge,
+  chargeFavouritePokemons,
   chargePokemons,
   chargeUniquePokemon,
   setChargingState,
@@ -45,7 +52,7 @@ export const startAddingFavouritePokemon = () => {
 
     const { uid } = getState().auth;
     const { uniquePokemon } = getState().pokemon;
-    const { id, name } = uniquePokemon;
+    const { id, name, types, sprites, height, weight } = uniquePokemon;
 
     const docRef = doc(FirebaseDB, `${uid}/pokedexInfo/pokemons/${id}`);
     await setDoc(
@@ -53,6 +60,10 @@ export const startAddingFavouritePokemon = () => {
       {
         id,
         name,
+        types,
+        sprites,
+        height,
+        weight,
       },
       { merge: true }
     );
@@ -72,5 +83,22 @@ export const startDeletingFavouritePokemon = () => {
     );
 
     dispatch(stopSavingState(false));
+  };
+};
+
+export const startGettingFavouritePokemons = () => {
+  return async (dispatch: AppDispatch, getState: any) => {
+    dispatch(setChargingState());
+    const { uid } = getState().auth;
+
+    const collectionRef = collection(FirebaseDB, `${uid}/pokedexInfo/pokemons`);
+    const respDoc = await getDocs(collectionRef);
+
+    const favouritePokemons: object[] = [];
+    respDoc.forEach((doc) => {
+      favouritePokemons.push(doc.data());
+    });
+
+    dispatch(chargeFavouritePokemons(favouritePokemons));
   };
 };
