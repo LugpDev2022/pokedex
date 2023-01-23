@@ -1,28 +1,33 @@
+import { MouseEventHandler } from "react";
 import { Pagination } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../../store";
-import { changePage, setChargingState } from "../../store/pokemon";
 
-export const AppPagination = () => {
-  const dispatch = useAppDispatch();
-  const { page, isDataCharging } = useAppSelector((state) => state.pokemon);
+interface Props {
+  handleNextPage: MouseEventHandler<HTMLElement>;
+  handlePrevPage: MouseEventHandler<HTMLElement>;
+  actualPage: number;
+  disableUi: boolean;
+  limit: number;
+}
 
-  const handleClick = (page: number) => {
-    dispatch(setChargingState());
-    dispatch(changePage(page));
-  };
-
+export const AppPagination = ({
+  handleNextPage,
+  handlePrevPage,
+  actualPage,
+  disableUi,
+  limit,
+}: Props) => {
   return (
     <Pagination size="lg" className="mt-5 justify-content-center">
       <Pagination.Prev
-        disabled={isDataCharging || page === 1}
-        onClick={() => handleClick(page - 1)}
+        disabled={disableUi || actualPage === 1}
+        onClick={handlePrevPage}
       />
-      <Pagination.Item disabled={isDataCharging} active>
-        {page}
+      <Pagination.Item disabled={disableUi} active>
+        {actualPage}
       </Pagination.Item>
       <Pagination.Next
-        disabled={isDataCharging || page === 113}
-        onClick={() => handleClick(page + 1)}
+        disabled={disableUi || actualPage === limit}
+        onClick={handleNextPage}
       />
     </Pagination>
   );
