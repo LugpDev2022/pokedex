@@ -1,16 +1,24 @@
 import { Row } from "react-bootstrap";
-import { RootState, useAppSelector } from "../../store";
+import { Pokemon } from "../../types/Pokemon";
 import { PokemonCardPlaceholder } from "../../ui";
 import { PokemonCard } from "../components";
 
-const cardsNumber: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+interface Props {
+  pokemonsArray: Pokemon[];
+  showCards: boolean;
+  placeholdersNumber: number;
+}
 
-export const ShowPokemonCards = () => {
-  const { pokemons, isDataCharging } = useAppSelector(
-    (state: RootState) => state.pokemon
-  );
+export const ShowPokemonCards = ({
+  showCards,
+  pokemonsArray,
+  placeholdersNumber,
+}: Props) => {
+  console.log();
 
-  if (isDataCharging) {
+  if (showCards) {
+    const cardsNumber: number[] = Array.from(Array(placeholdersNumber).keys());
+
     return (
       <Row className="justify-content-around">
         {cardsNumber.map((number) => (
@@ -21,8 +29,8 @@ export const ShowPokemonCards = () => {
   }
 
   return (
-    <Row className="justify-content-around">
-      {pokemons.map((pokemon: any) => (
+    <Row className="justify-content-around animate__animated animate__fadeIn">
+      {pokemonsArray.map((pokemon: any) => (
         <PokemonCard
           {...pokemon}
           sprite={pokemon.sprites.front_default}

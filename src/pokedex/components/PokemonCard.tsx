@@ -32,7 +32,7 @@ export const PokemonCard = ({
     <Col xs={11} sm={9} md={6} lg={3}>
       <Link
         to={`/pokemon/${id}`}
-        className="text-decoration-none text-reset card-as-link animate__animated animate__fadeIn"
+        className="text-decoration-none text-reset card-as-link"
       >
         <Card className={margin ? "mt-4" : ""}>
           <Card.Header>
