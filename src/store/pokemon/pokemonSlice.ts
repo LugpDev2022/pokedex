@@ -32,8 +32,11 @@ export const pokemonSlice = createSlice({
       state.uniquePokemon = payload;
       state.errorMessage = "";
     },
-    changePage: (state, { payload }) => {
-      state.page = payload;
+    nextPage: (state) => {
+      state.page = state.page + 1;
+    },
+    prevPage: (state) => {
+      state.page = state.page - 1;
     },
     clearPokemons: (state) => {
       state.isDataCharging = false;
@@ -58,13 +61,14 @@ export const pokemonSlice = createSlice({
 });
 
 export const {
-  chargePokemons,
-  setSavingState,
-  stopSavingState,
-  changePage,
-  setChargingState,
-  clearPokemons,
-  chargeUniquePokemon,
   cancelCharge,
   chargeFavouritePokemons,
+  chargePokemons,
+  chargeUniquePokemon,
+  clearPokemons,
+  nextPage,
+  prevPage,
+  setChargingState,
+  setSavingState,
+  stopSavingState,
 } = pokemonSlice.actions;

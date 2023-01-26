@@ -14,8 +14,6 @@ export const ShowPokemonCards = ({
   pokemonsArray,
   placeholdersNumber,
 }: Props) => {
-  console.log();
-
   if (showCards) {
     const cardsNumber: number[] = Array.from(Array(placeholdersNumber).keys());
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
-import { startChargingPokemons } from "../../store/pokemon";
+import { nextPage, prevPage, startChargingPokemons } from "../../store/pokemon";
 import { ShowPokemonCards, AppPagination } from "../components";
 
 export const PokedexPage = () => {
@@ -26,8 +26,8 @@ export const PokedexPage = () => {
       <AppPagination
         actualPage={page}
         disableUi={isDataCharging}
-        handleNextPage={() => console.log("next")}
-        handlePrevPage={() => console.log("prev")}
+        handleNextPage={() => dispatch(nextPage())}
+        handlePrevPage={() => dispatch(prevPage())}
         limit={113}
       />
     </Container>
