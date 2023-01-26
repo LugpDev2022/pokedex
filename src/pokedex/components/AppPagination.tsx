@@ -1,33 +1,38 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useMemo } from "react";
 import { Pagination } from "react-bootstrap";
 
 interface Props {
-  handleNextPage: MouseEventHandler<HTMLElement>;
-  handlePrevPage: MouseEventHandler<HTMLElement>;
   actualPage: number;
   disableUi: boolean;
+  handleNextPage: MouseEventHandler<HTMLElement>;
+  handlePrevPage: MouseEventHandler<HTMLElement>;
   limit: number;
 }
 
 export const AppPagination = ({
-  handleNextPage,
-  handlePrevPage,
   actualPage,
   disableUi,
+  handleNextPage,
+  handlePrevPage,
   limit,
 }: Props) => {
+  const disablePrev = actualPage === 1 || disableUi;
+  const disableNext = actualPage === limit || disableUi;
+
   return (
     <Pagination size="lg" className="mt-5 justify-content-center">
       <Pagination.Prev
-        disabled={disableUi || actualPage === 1}
-        onClick={handlePrevPage}
+        data-testid="prevButton"
+        disabled={disablePrev}
+        onClick={disablePrev ? () => {} : handlePrevPage}
       />
-      <Pagination.Item disabled={disableUi} active>
+      <Pagination.Item data-testid="pageNumber" disabled={disableUi} active>
         {actualPage}
       </Pagination.Item>
       <Pagination.Next
-        disabled={disableUi || actualPage === limit}
-        onClick={handleNextPage}
+        data-testid="nextButton"
+        disabled={disableNext}
+        onClick={disableNext ? () => {} : handleNextPage}
       />
     </Pagination>
   );
