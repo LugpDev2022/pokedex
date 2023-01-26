@@ -17,9 +17,19 @@ export const PokedexPage = () => {
 
   return (
     <Container className="navbar-padding animate__animated animate__fadeIn">
-      <ShowPokemonCards showCards={isDataCharging} pokemonsArray={pokemons} placeholdersNumber={8} />
+      <ShowPokemonCards
+        placeholdersNumber={8}
+        pokemonsArray={pokemons}
+        showCards={isDataCharging}
+      />
 
-      <AppPagination />
+      <AppPagination
+        actualPage={page}
+        disableUi={isDataCharging}
+        handleNextPage={() => console.log("next")}
+        handlePrevPage={() => console.log("prev")}
+        limit={113}
+      />
     </Container>
   );
 };
