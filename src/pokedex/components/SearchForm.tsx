@@ -1,5 +1,5 @@
-import { useFormik } from "formik";
 import { MouseEventHandler } from "react";
+import { useFormik } from "formik";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SearchIcon, CloseIcon } from "../../assets/icons";
@@ -7,9 +7,9 @@ import { includesLetters } from "../../helpers";
 import { useAppSelector } from "../../store";
 
 interface Props {
-  handleCancel?: MouseEventHandler;
-  closeButton?: boolean;
   className?: string;
+  closeButton?: boolean;
+  handleCancel?: MouseEventHandler;
 }
 
 interface Errors {
@@ -17,9 +17,9 @@ interface Errors {
 }
 
 export const SearchForm = ({
-  handleCancel,
-  closeButton = false,
   className,
+  closeButton = false,
+  handleCancel,
 }: Props) => {
   const navigate = useNavigate();
   const { isDataCharging } = useAppSelector((state) => state.pokemon);

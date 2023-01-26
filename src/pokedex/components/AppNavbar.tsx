@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 import { PersonIcon, SearchIcon } from "../../assets/icons";
 import { SearchForm } from "./SearchForm";
 
-interface NavMdProps {
-  handleClick: MouseEventHandler;
-  handleCancel: MouseEventHandler;
-  showForm: boolean;
-}
-
 const NavbarContent = () => (
   <>
     <SearchForm className="d-md-none my-4" />
@@ -24,11 +18,11 @@ const NavbarContent = () => (
   </>
 );
 
-const NavbarMdContent = ({
-  handleClick,
-  handleCancel,
-  showForm,
-}: NavMdProps) => {
+const NavbarMdContent = () => {
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const handleClick = () => setShowForm(true);
+  const handleCancel = () => setShowForm(false);
+
   if (showForm) {
     return (
       <SearchForm
@@ -57,31 +51,21 @@ const NavbarMdContent = ({
   );
 };
 
-export const AppNavbar = () => {
-  const [showForm, setShowForm] = useState<boolean>(false);
-  const handleSearchClick = () => setShowForm(true);
-  const handleCancelForm = () => setShowForm(false);
-
-  return (
-    <Navbar variant="light" expand="md" bg="primary" fixed="top">
-      <Container>
-        <Link
-          to="/"
-          className="navbar-brand pokemon-font"
-          style={{ fontSize: "30px", letterSpacing: "2px" }}
-        >
-          Pokedex
-        </Link>
-        <Navbar.Toggle aria-controls="main-navbar" />
-        <Navbar.Collapse id="main-navbar" className="justify-content-end gap-4">
-          <NavbarContent />
-          <NavbarMdContent
-            handleClick={handleSearchClick}
-            handleCancel={handleCancelForm}
-            showForm={showForm}
-          />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
-};
+export const AppNavbar = () => (
+  <Navbar variant="light" expand="md" bg="primary" fixed="top">
+    <Container>
+      <Link
+        to="/"
+        className="navbar-brand pokemon-font"
+        style={{ fontSize: "30px", letterSpacing: "2px" }}
+      >
+        Pokedex
+      </Link>
+      <Navbar.Toggle aria-controls="main-navbar" />
+      <Navbar.Collapse id="main-navbar" className="justify-content-end gap-4">
+        <NavbarContent />
+        <NavbarMdContent />
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+);
