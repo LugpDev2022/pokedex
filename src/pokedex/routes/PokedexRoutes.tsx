@@ -14,7 +14,8 @@ export const PokedexRoutes = () => {
         <Route path="/pokemon/:id" element={<PokemonPage />} />
         <Route path="/profile" element={<ProfilePage />} />
 
-        {visitedUrl === '/profile' || visitedUrl.includes('/pokemon/') ? (
+        {visitedUrl === "/profile" ||
+        (visitedUrl && visitedUrl.includes("/pokemon/")) ? (
           <Route path="/*" element={<Navigate to={visitedUrl} />} />
         ) : (
           <Route path="/*" element={<Navigate to="/" />} />
