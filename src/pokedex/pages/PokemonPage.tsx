@@ -1,34 +1,37 @@
 import { useEffect, useState } from "react";
 import {
+  Alert,
   Col,
   Container,
-  Row,
   Image,
   Placeholder,
-  Alert,
+  Row,
 } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { startChargingUniquePokemon } from "../../store/pokemon";
 import { getPokemonType } from "../helpers";
 import white from "../../assets/images/white.jpg";
-import { AddFavouritePokemonButton, ShareButton } from "../components";
+import {
+  AddFavouritePokemonButton,
+  AppPagination,
+  ShareButton,
+} from "../components";
 
 export const PokemonPage = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const {
-    uniquePokemon,
-    isDataCharging,
     errorMessage,
+    isDataCharging,
+    uniquePokemon,
   }: {
-    uniquePokemon: any;
-    isDataCharging: boolean;
     errorMessage: string;
-    isPokemonSaving: boolean;
+    isDataCharging: boolean;
+    uniquePokemon: any;
   } = useAppSelector((state: RootState) => state.pokemon);
-
   const [pokemonTypes, setPokemonTypes] = useState<string>("");
 
   useEffect(() => {
@@ -95,22 +98,37 @@ export const PokemonPage = () => {
               We don't know that pokemon
             </Alert>
           ) : (
-            <div className="bg-white rounded-4 py-3">
-              <Row className="justify-content-center">
-                <Col xs={10} sm={6}>
-                  <Image
-                    className="w-100"
-                    src={
-                      isDataCharging
-                        ? white
-                        : uniquePokemon.sprites &&
-                        uniquePokemon.sprites.front_default
-                    }
-                  />
-                </Col>
-                {isDataCharging ? <CardPlaceholder /> : <PokemonCard />}
-              </Row>
-            </div>
+            <>
+              <div className="bg-white rounded-4 py-3 mt-4">
+                <Row className="justify-content-center">
+                  <Col xs={10} sm={6}>
+                    <Image
+                      className="w-100"
+                      src={
+                        isDataCharging
+                          ? white
+                          : uniquePokemon.sprites &&
+                            uniquePokemon.sprites.front_default
+                      }
+                    />
+                  </Col>
+                  {isDataCharging ? <CardPlaceholder /> : <PokemonCard />}
+                </Row>
+              </div>
+              <div>
+                <AppPagination
+                  actualPage={uniquePokemon.id}
+                  handleNextPage={() =>
+                    navigate(`/pokemon/${uniquePokemon.id + 1}`)
+                  }
+                  handlePrevPage={() =>
+                    navigate(`/pokemon/${uniquePokemon.id - 1}`)
+                  }
+                  disableUi={isDataCharging}
+                  limit={1008}
+                />
+              </div>
+            </>
           )}
         </Col>
       </Row>

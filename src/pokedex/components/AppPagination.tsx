@@ -1,4 +1,4 @@
-import { MouseEventHandler, useMemo } from "react";
+import { MouseEventHandler } from "react";
 import { Pagination } from "react-bootstrap";
 
 interface Props {
