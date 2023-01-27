@@ -117,7 +117,7 @@ export const PokemonPage = () => {
               </div>
               <div>
                 <AppPagination
-                  actualPage={uniquePokemon.id}
+                  actualPage={uniquePokemon.id ? uniquePokemon.id : 0}
                   handleNextPage={() =>
                     navigate(`/pokemon/${uniquePokemon.id + 1}`)
                   }
