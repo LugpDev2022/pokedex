@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SearchIcon, CloseIcon } from "../../assets/icons";
-import { includesLetters } from "../../helpers";
 import { useAppSelector } from "../../store";
 
 interface Props {
@@ -28,8 +27,6 @@ export const SearchForm = ({
     const errors: Errors = {};
 
     if (searchedPokemon.length < 1) errors.searchedPokemon = "Write an ID";
-    else if (includesLetters(searchedPokemon))
-      errors.searchedPokemon = "Introduce a pokemon ID";
     else if (searchedPokemon.trim().includes(" "))
       errors.searchedPokemon = "Delete the white spaces";
 
@@ -38,12 +35,21 @@ export const SearchForm = ({
 
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: { searchedPokemon: "" },
-    onSubmit: ({ searchedPokemon }) => {
-      const errors = validate(searchedPokemon);
-      //TODO: Add a better alert
-      if (errors.searchedPokemon) return alert(errors.searchedPokemon);
+    onSubmit: async ({ searchedPokemon }) => {
+      try {
+        const errors = validate(searchedPokemon);
+        //TODO: Add a better alert
+        if (errors.searchedPokemon) return alert(errors.searchedPokemon);
 
-      navigate(`/pokemon/${searchedPokemon}`);
+        const resp = await fetch(
+          `https://pokeapi.co/api/v2/pokemon/${searchedPokemon.toLowerCase()}`
+        );
+        const { id } = await resp.json();
+
+        navigate(`/pokemon/${id}`);
+      } catch (e: any) {
+        navigate(`/pokemon/not-found`);
+      }
     },
   });
 
